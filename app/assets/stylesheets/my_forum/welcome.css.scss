@@ -1,0 +1,29 @@
+.forum-category-box {
+//  border: 1px solid #696969;
+
+  .category-name {
+    height: 26px;
+    line-height: 26px;
+    padding-left: 20px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #375576;
+    border-bottom: solid 1px #C1A9FF;
+  }
+
+  .form-row {
+    margin-top: 8px;
+  }
+
+  .forum-description {
+    font-size: 12px;
+  }
+
+  .forum-info {
+    font-size: 11px;
+  }
+
+  .forum-last-message-info {
+    font-size: 11px;
+  }
+}

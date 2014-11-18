@@ -1,0 +1,8 @@
+%h2= t('.create_new_category')
+
+= form_for @category, url: admin_categories_path do |f|
+  = f.text_field :name, placeholder: t('.category_name')
+  = f.submit
+
+
+

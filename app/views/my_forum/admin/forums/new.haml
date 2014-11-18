@@ -1,0 +1,6 @@
+%h2= t('.create_new_forum')
+
+= form_for @forum, url: admin_category_forums_path do |f|
+  = f.text_field :name, placeholder: t('.forum_name')
+  = f.text_field :description, placeholder: t('.forum_description')
+  = f.submit

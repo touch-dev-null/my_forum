@@ -1,0 +1,34 @@
+= link_to t('.create_category'), new_admin_category_path, class: 'btn btn-info', id: 'test'
+
+
+
+.container-fluid
+  - @categories.each do |category|
+    .row.category_box
+      .col-md-12.category_name
+        =category.name
+
+        .pull-right.btn-group.btn-group-sm{ rel: 'group' }
+          = link_to t('.create_forum'), new_admin_category_forum_path(category), class: 'btn btn-default'
+          .btn-group.btn-group-sm{ rel: 'group' }
+            %button{ class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } }
+              Options
+              .caret
+            %ul{ class: 'dropdown-menu', role: 'menu' }
+              %li= link_to t('.edit'), '#'
+              %li= link_to t('.delete'), '#'
+
+
+      .row.category_forums
+        .col-md-12
+          = t('.no_forums') if category.forums.blank?
+          -category.forums.each do |forum|
+            .row
+              .col-md-12
+                %strong=forum.name
+                %br
+                =forum.description
+
+                .pull-right
+                  =link_to '', '#', class: 'glyphicon glyphicon-edit'
+                  =link_to '', '#', class: 'glyphicon glyphicon-trash'

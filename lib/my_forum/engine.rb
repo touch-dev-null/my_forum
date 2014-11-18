@@ -2,6 +2,10 @@ module MyForum
   class Engine < ::Rails::Engine
     isolate_namespace MyForum
 
+    require "jquery-rails"
+    require 'bootstrap-sass'
+
+
     USE_CUSTOM_USER_MODEL       = false
     CUSTOM_USER_CLASS           = 'User'
     CUSTOM_USER_LOGIN_ATTR      = 'login'

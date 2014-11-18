@@ -1,1 +1,22 @@
 Welcome to the Forum!
+
+.container-fluid
+  - @forum_categories.each do |category|
+    .row.forum-category-box
+      .col-md-12
+        .category-name= category.name
+        - category.forums.each do |forum|
+          .row.form-row
+            .col-md-1
+              img
+
+            .col-md-6
+              %strong= link_to forum.name, forum_path(forum)
+              %br
+              .forum-description= forum.description
+
+            .col-md-2.forum-info
+              = forum_stat(forum)
+
+            .col-md-3.forum-last-message-info
+              = forum_last_message_info(forum)

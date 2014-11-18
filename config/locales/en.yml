@@ -1,0 +1,27 @@
+en:
+  my_forum:
+    admin:
+      forums:
+        index:
+          create_category: 'Create New Category'
+
+
+      categories:
+        new:
+          create_new_category: 'Create new Category'
+          category_name: 'Category name'
+
+
+      forums:
+        new:
+          create_new_forum: 'Create new Forum'
+          forum_name: 'Forum name'
+          forum_description: 'Forum description'
+
+
+    welcome:
+      index:
+        topics_count: "%{topics_count} topics"
+        messages_count: "%{messages_count} messages"
+        last_answer_from: 'Last answer from: '
+        in_forum: 'in'

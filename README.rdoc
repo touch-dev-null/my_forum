@@ -2,6 +2,9 @@
 
 This project rocks and uses MIT-LICENSE.
 
+INSTALLATION
+rake my_forum:install:migrations
+
 For using existing User model, use somethink like this:
 
 Create config/initializers/my_forum.rb with next content:
