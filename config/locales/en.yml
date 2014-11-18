@@ -24,4 +24,15 @@ en:
         topics_count: "%{topics_count} topics"
         messages_count: "%{messages_count} messages"
         last_answer_from: 'Last answer from: '
-        in_forum: 'in'
+        in_forum: 'in '
+
+    topics:
+      new:
+        name: 'Topic name'
+        description: 'Description'
+        post_text: 'Post text'
+
+  layouts:
+    my_forum:
+      application:
+        welcome_to_forum: 'Welcome back'

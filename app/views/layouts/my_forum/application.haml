@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title Forum
+    = stylesheet_link_tag 'my_forum/application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'my_forum/application', 'data-turbolinks-track' => true
+    = csrf_meta_tag
+  #forum_header
+    - if current_user
+      = "#{t('.welcome_to_forum')}, #{current_user.login}"
+      = link_to t('logout'), logout_path
+    - else
+      = link_to t('login'), signin_path
+
+
+  #body
+    %body.container-fluid
+      = yield

@@ -1,0 +1,12 @@
+%h2= t('.create_new_topic')
+
+= form_for @topic, url: forum_topics_path do |form|
+  = form.text_field :name, placeholder: t('.name')
+  = form.text_field :description, placeholder: t('.description')
+
+  %br
+
+  = fields_for :post do |post_form|
+    = post_form.text_area :text, placeholder: t('.post_text')
+
+  = form.submit

@@ -4,6 +4,7 @@ class CreateMyForumTopics < ActiveRecord::Migration
       t.integer :forum_id
       t.string  :name
       t.string  :description
+      t.integer :views
       t.timestamps
     end
   end

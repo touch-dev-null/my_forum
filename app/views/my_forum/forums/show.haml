@@ -8,3 +8,11 @@
     .col-md-1=t('.answers')
     .col-md-1=t('.views')
     .col-md-2=t('.last_message')
+
+  - @forum_topics.each do |topic|
+    .col-md-1
+    .col-md-6= topic.name
+    .col-md-1= topic.posts.first.user.login
+    .col-md-1= topic.posts.count
+    .col-md-1=# topic.views
+    .col-md-2= topic_last_post_info(topic)

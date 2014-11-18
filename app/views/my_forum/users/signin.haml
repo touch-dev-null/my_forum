@@ -1,0 +1,10 @@
+#sign_in
+  =form_for :user, :url => signin_path do |f|
+    =f.label :login, t('user.login')
+    =f.text_field :login
+
+    =f.label :password, t('user.password')
+    =f.password_field :password
+
+    .center
+      =f.submit
