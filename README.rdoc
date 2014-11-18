@@ -1,3 +1,9 @@
 = MyForum
 
 This project rocks and uses MIT-LICENSE.
+
+For using existing User model, use somethink like this:
+
+Create config/initializers/my_forum.rb with next content:
+MyForum::Engine.use_custom_user_model = true
+...
