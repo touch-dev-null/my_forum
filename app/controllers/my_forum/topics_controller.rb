@@ -2,15 +2,19 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class TopicsController < ApplicationController
-    before_filter :find_forum, only: [:new, :create]
+    before_filter :find_forum, only: [:new, :create, :show]
 
     def new
       @topic = @forum.topics.build
     end
 
+    def show
+      @topic = Topic.find(params[:id])
+    end
+
     def create
       raise unless current_user
-
+      #TODO !
       topic = @forum.topics.build(topic_params)
       post  = topic.posts.build(post_params)
       post.user = current_user

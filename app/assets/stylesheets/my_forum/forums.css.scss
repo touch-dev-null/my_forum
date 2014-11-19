@@ -1,4 +1,20 @@
-/*
-  Place all the styles related to the matching controller here.
-  They will automatically be included in application.css.
-*/
+.topic-list-container {
+  background-color: #f7f7f7;
+  padding: 6px;
+
+  a {
+    color: #000;
+  }
+
+  .box {
+    padding: 4px 6px;
+    border: 1px solid #DFDFDF;
+    background-color: #fff;
+
+    .topic-row {
+      .info {
+        font-size: 11px;
+      }
+    }
+  }
+}
