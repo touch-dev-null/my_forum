@@ -2,21 +2,15 @@ Welcome to the Forum!
 
 .container-fluid
   - @forum_categories.each do |category|
-    .row.forum-category-box
-      .col-md-12
-        .category-name= category.name
-        - category.forums.each do |forum|
-          .row.form-row
-            .col-md-1
-              img
+    .row.category-header
+      .col-md-12= category.name
 
-            .col-md-6
-              %strong= link_to forum.name, forum_path(forum)
-              %br
-              .forum-description= forum.description
-
-            .col-md-2.forum-info
-              = forum_stat(forum)
-
-            .col-md-3.forum-last-message-info
-              = forum_last_message_info(forum)
+    .row.category-forums
+      .col-md-12.category-forums-container
+        .box
+          - category.forums.each do |forum|
+            .row.forum-row
+              .col-md-1.col-sm-1= image_tag('/lada_logo.jpg', width: '66px')
+              .col-md-6.col-sm-6= forum_name(forum)
+              .col-md-2.col-sm-2.forum-info= forum_stat(forum)
+              .col-md-3.col-sm-3.forum-last-message-info= forum_last_message_info(forum)

@@ -1,5 +1,12 @@
 module MyForum
   module ForumsHelper
+
+    def forum_name(forum)
+      html  = content_tag :strong, link_to(forum.name, forum_path(forum))
+      html += content_tag :div, forum.description
+      html.html_safe
+    end
+
     def forum_stat(forum)
       html  = content_tag(:div, t('.topics_count', topics_count: forum.topics.count))
       html += content_tag(:div, t('.messages_count', messages_count: forum.topics.count))
