@@ -5,7 +5,7 @@ MyForum::Engine.routes.draw do
   match 'logout', to: 'users#logout', via: [:get]
 
   resources :forums, only: [:index, :show] do
-    resources :topics, only: [:index, :show] do
+    resources :topics do
       resources :posts
     end
   end

@@ -4,6 +4,8 @@ class CreateMyForumForums < ActiveRecord::Migration
       t.integer :category_id
       t.string :name
       t.string :description
+      t.integer :topics_count
+      t.integer :posts_count
       t.timestamps
     end
   end

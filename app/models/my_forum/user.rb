@@ -10,6 +10,10 @@ module MyForum
       password == encrypt(submitted_password)
     end
 
+    def can_quick_answer?(forum)
+      true
+    end
+
     private
 
     def encrypt_password

@@ -5,6 +5,7 @@ class CreateMyForumUsers < ActiveRecord::Migration
       t.string  :password
       t.string  :salt
       t.string  :email
+      t.integer :posts_count
       t.boolean :is_admin, default: false
       t.boolean :is_moderator, default: false
       t.timestamps

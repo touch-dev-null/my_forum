@@ -1,7 +1,7 @@
 module MyForum
   class Topic < ActiveRecord::Base
     has_many  :posts, dependent: :destroy
-    belongs_to  :forum
+    belongs_to  :forum, :counter_cache => true
 
     def info
       author  = (post = posts.first).user.login

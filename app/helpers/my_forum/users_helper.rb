@@ -12,7 +12,7 @@ module MyForum
     end
 
     def user_posts_count(user)
-      user.posts.count
+      user.posts_count
     end
   end
 end

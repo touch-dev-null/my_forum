@@ -8,8 +8,8 @@ module MyForum
     end
 
     def forum_stat(forum)
-      html  = content_tag(:div, t('.topics_count', topics_count: forum.topics.count))
-      html += content_tag(:div, t('.messages_count', messages_count: forum.topics.count))
+      html  = content_tag(:div, t('.topics_count', topics_count: forum.topics_count))
+      html += content_tag(:div, t('.messages_count', messages_count: forum.topics_count))
       html.html_safe
     end
 

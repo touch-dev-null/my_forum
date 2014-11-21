@@ -15,5 +15,6 @@
         - @topic_posts.each do |post|
           = render 'post', post: post
 
-  #quick_answer
-    = render 'quick_answer', forum: @forum, topic: @topic
+  - if current_user.can_quick_answer?(@topic)
+    #quick_answer
+      = render 'quick_answer', forum: @forum, topic: @topic
