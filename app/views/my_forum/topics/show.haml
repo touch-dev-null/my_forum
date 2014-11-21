@@ -1,18 +1,19 @@
-= link_to t('post_to_topic'), '#'
-
 .container-fluid
-  .row
-    .col-md-12
-      %h2= @topic.name
-      .info= "#{@topic.info[:author]}, #{@topic.info[:created]}"
+  #navigation= draw_navigation(@topic)
 
-  .row
-    .col-md-12
-      =t('.tags')
+  = link_to t('post_to_topic'), '#'
 
-  .row
-    .col-md-12
-      =t('.page')
+  #topic_header
+    = render 'topic_header', topic: @topic
 
-  .row
-    .col-md-12
+  #posts
+    .row
+      .col-md-12.topic_posts_info
+        =t('.messages_in_topic', count: @topic.posts.count)
+    .row.post-list-container
+      .box
+        - @topic_posts.each do |post|
+          = render 'post', post: post
+
+  #quick_answer
+    = render 'quick_answer', forum: @forum, topic: @topic

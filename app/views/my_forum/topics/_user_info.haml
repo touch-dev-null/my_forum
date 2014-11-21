@@ -1,0 +1,9 @@
+- user = post.user
+.row
+  .col-md-12.user-title= user_title(user)
+.row
+  .col-md-12.user-avatar= user_avatar(user)
+.row
+  .col-md-12.user-posts-count= t('.user_posts_count', count: user_posts_count(user))
+.row
+  .col-md-12.user-reg-date= user.created_at

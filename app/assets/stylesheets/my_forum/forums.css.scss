@@ -1,3 +1,17 @@
+.draw-navigation {
+  list-style: none;
+  margin: 0;
+
+  li {
+    float: left;
+    margin: 0 10px 0 0;
+  }
+}
+
+#navigation {
+  clear: both;
+}
+
 .topic-list-container {
   background-color: #f7f7f7;
   padding: 6px;

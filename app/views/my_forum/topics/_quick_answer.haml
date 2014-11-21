@@ -1,0 +1,4 @@
+= form_for @new_post, url: forum_topic_posts_path(forum, topic)do |form|
+  = form.text_area :text
+
+  = form.submit

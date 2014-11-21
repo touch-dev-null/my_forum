@@ -1,0 +1,10 @@
+.row.post-header
+  .col-md-12
+    =post.user.try(:login)
+.row
+  .col-md-2
+    = render 'user_info', post: post
+  .col-md-10
+    = post.created_at
+    %br
+    = post.text

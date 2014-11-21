@@ -10,6 +10,8 @@ module MyForum
 
     def show
       @topic = Topic.find(params[:id])
+      @topic_posts = @topic.posts
+      @new_post = Post.new #TODO if quick_answer_enabled
     end
 
     def create

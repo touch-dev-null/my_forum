@@ -2,6 +2,8 @@ module MyForum
   class User < ActiveRecord::Base
     require 'digest'
 
+    has_many :posts, class_name: 'MyForum::Post'
+
     before_save :encrypt_password
 
     def valid_password?(submitted_password)

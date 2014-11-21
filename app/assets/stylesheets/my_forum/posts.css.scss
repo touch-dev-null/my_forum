@@ -1,0 +1,51 @@
+.topic_posts_info {
+  background-color: #000;
+  color: #fff;
+  font-size: 11px;
+  height: 38px;
+  line-height: 38px;
+}
+
+.post-list-container {
+  background-color: #f7f7f7;
+
+  .box {
+    margin: 12px;
+    border: 1px solid #DFDFDF;
+    background-color: #fff;
+
+    .post-header {
+      height: 36px;
+      line-height: 36px;
+      margin: 0;
+      background-color: #ddd;
+    }
+
+    .user-title {
+      margin-top: 10px;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    img.user-avatar {
+      width: 100px;
+    }
+
+    .user-avatar {
+      text-align: center;
+    }
+
+    .user-posts-count {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .user-reg-date {
+      font-size: 11px;
+      text-align: center;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+  }
+}
