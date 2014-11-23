@@ -9,13 +9,9 @@
   %body.container-fluid
 
     #forum_header
-      =image_tag('lada_head.jpg')
-      - if current_user
-        = "#{t('.welcome_to_forum')}, #{current_user.login}"
-        = link_to t('logout'), logout_path
-      - else
-        = link_to t('login'), signin_path
-
+      = image_tag('lada_head.jpg')
+      #guest_navbar
+        = render current_user ? '/layouts/my_forum/user_navbar' : '/layouts/my_forum/guest_navbar'
 
     #body
       = yield

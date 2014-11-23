@@ -39,5 +39,9 @@ en:
 
   layouts:
     my_forum:
-      application:
+      user_navbar:
         welcome_to_forum: 'Welcome back'
+        private_messages: 'Private messages'
+        new_forum_messages: 'New Forum messages'
+        user_profile: 'My profile'
+        logout: 'Logout'
