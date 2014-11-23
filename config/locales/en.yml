@@ -40,6 +40,9 @@ en:
         messages_in_topic: "Messages in topic: %{count}"
       user_info:
         user_posts_count: "%{count} messages"
+      quick_answer:
+        quick_answer: 'Quick answer'
+        advanced_answer: 'Advanced answer'
 
 
   layouts:

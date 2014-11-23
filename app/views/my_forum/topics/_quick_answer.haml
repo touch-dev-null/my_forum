@@ -1,4 +1,8 @@
-= form_for @new_post, url: forum_topic_posts_path(forum, topic)do |form|
-  = form.text_area :text
+.row
+  .col-md-10.col-md-offset-1
+    = form_for @new_post, url: forum_topic_posts_path(forum, topic), role: 'form' do |form|
+      .form-group= form.text_area :text, class: 'form-control'
 
-  = form.submit
+      .pull-right
+        = form.submit t('.quick_answer'), class: 'btn btn-primary'
+        = link_to t('.advanced_answer'), '#', class: 'btn btn-primary'
