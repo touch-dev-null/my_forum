@@ -1,4 +1,4 @@
-= link_to t('creta_new_topic'), new_forum_topic_path(@forum)
+= link_to t('creta_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'
 
 .container-fluid
   .row.forum-header
@@ -10,11 +10,13 @@
     .col-md-2=t('.last_message')
 
   .row.topic-list-container
-    .box
+    .box.topic-list
       - @forum_topics.each do |topic|
         .row.topic-row
-          .col-md-7.col-sm-7= link_to topic.name, forum_topic_path(@forum, topic)
+          .col-md-7.col-sm-7= render 'topic_subject', topic: topic, forum: @forum
           .col-md-1.col-sm-1= topic.posts.first.user.login
           .col-md-1.col-sm-1= topic.posts.count
           .col-md-1.col-sm-1=# topic.views
           .col-md-2.col-sm-2.info= topic_last_post_info(topic)
+
+= link_to t('creta_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'

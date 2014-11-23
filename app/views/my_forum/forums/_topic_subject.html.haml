@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    - if topic.pinned?
+      %span.label.label-warning.pin-sign
+        %span.glyphicon.glyphicon-pushpin
+
+      = link_to topic.name, forum_topic_path(@forum, topic)
+.row
+  .col-md-12
+    = t('.author', author: topic.owner.login)

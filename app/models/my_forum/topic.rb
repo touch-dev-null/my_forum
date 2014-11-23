@@ -9,5 +9,9 @@ module MyForum
 
       { author: author, created: created }
     end
+
+    def owner
+      posts.first.user
+    end
   end
 end

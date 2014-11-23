@@ -26,6 +26,10 @@ en:
         last_answer_from: 'Last answer from: '
         in_forum: 'in '
 
+    forums:
+      topic_subject:
+        author: "Author: %{author}"
+
     topics:
       new:
         name: 'Topic name'
