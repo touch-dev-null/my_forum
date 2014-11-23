@@ -35,6 +35,7 @@ en:
         name: 'Topic name'
         description: 'Description'
         post_text: 'Post text'
+        create_new_topic_in: "Create new topic in '%{topic_name}'"
       show:
         messages_in_topic: "Messages in topic: %{count}"
       user_info:

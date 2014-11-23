@@ -1,12 +1,12 @@
-%h2= t('.create_new_topic')
+%h2= t('.create_new_topic_in', topic_name: @forum.name)
 
-= form_for @topic, url: forum_topics_path do |form|
-  = form.text_field :name, placeholder: t('.name')
-  = form.text_field :description, placeholder: t('.description')
+= form_for @topic, url: forum_topics_path, role: 'form' do |form|
+  .form-group= form.text_field :name, class: 'name form-control', placeholder: t('.name')
+  .form-group= form.text_field :description, class: 'description form-control', placeholder: t('.description')
 
   %br
 
   = fields_for :post do |post_form|
-    = post_form.text_area :text, placeholder: t('.post_text')
+    .form-group= post_form.text_area :text, placeholder: t('.post_text'), class: 'form-control', rows: 10
 
-  = form.submit
+  = form.submit class: 'btn '

@@ -14,4 +14,7 @@
         = render current_user ? '/layouts/my_forum/user_navbar' : '/layouts/my_forum/guest_navbar'
 
     #body
+      .row
+        .col-md-6
+          #forum-navigation= draw_navigation
       = yield
