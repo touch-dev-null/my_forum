@@ -1,0 +1,55 @@
+ru:
+  my_forum:
+    admin:
+      forums:
+        index:
+          create_category: 'Создать новую категорию'
+
+
+      categories:
+        new:
+          create_new_category: 'Создать новую категорию'
+          category_name: 'Название категории'
+
+
+      forums:
+        new:
+          create_new_forum: 'Создать новый форум'
+          forum_name: 'Название форума'
+          forum_description: 'Описание форума'
+
+
+    welcome:
+      index:
+        topics_count: "%{topics_count} тем"
+        messages_count: "%{messages_count} сообщений"
+        last_answer_from: 'Последний ответ от: '
+        in_forum: 'в '
+
+    forums:
+      topic_subject:
+        author: "Автор: %{author}"
+
+    topics:
+      new:
+        name: 'Название темы'
+        description: 'Описание'
+        post_text: ''
+        create_new_topic_in: "Создать новую тему в '%{topic_name}'"
+      show:
+        messages_in_topic: "Сообщений в теме: %{count}"
+      user_info:
+        user_posts_count: "%{count} сообщений"
+      quick_answer:
+        quick_answer: 'Быстрый ответ'
+        advanced_answer: 'Расширенный ответ'
+
+
+  layouts:
+    my_forum:
+      user_navbar:
+        welcome_to_forum: 'Добро пожаловать'
+        private_messages: 'Личные сообщения'
+        new_forum_messages: 'Новые сообщения'
+        user_profile: 'Профиль'
+        logout: 'Выход'

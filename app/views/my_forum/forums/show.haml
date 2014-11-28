@@ -11,12 +11,16 @@
 
   .row.topic-list-container
     .box.topic-list
-      - @forum_topics.each do |topic|
+      - if @forum_topics.blank?
         .row.topic-row
-          .col-md-7.col-sm-7= render 'topic_subject', topic: topic, forum: @forum
-          .col-md-1.col-sm-1= topic.posts.first.user.login
-          .col-md-1.col-sm-1= topic.posts.count
-          .col-md-1.col-sm-1=# topic.views
-          .col-md-2.col-sm-2.info= topic_last_post_info(topic)
+          .col-md-12.col-sm-12.text-center= t('.no-topics')
+      - else
+        - @forum_topics.each do |topic|
+          .row.topic-row
+            .col-md-7.col-sm-7= render 'topic_subject', topic: topic, forum: @forum
+            .col-md-1.col-sm-1= topic.posts.first.user.login
+            .col-md-1.col-sm-1= topic.posts.count
+            .col-md-1.col-sm-1=# topic.views
+            .col-md-2.col-sm-2.info= topic_last_post_info(topic)
 
 = link_to t('creta_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'
