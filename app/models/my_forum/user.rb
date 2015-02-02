@@ -3,6 +3,8 @@ module MyForum
     require 'digest'
 
     has_many :posts, class_name: 'MyForum::Post'
+    has_many :user_roles
+    has_many :roles, through: :user_roles
 
     before_save :encrypt_password
 

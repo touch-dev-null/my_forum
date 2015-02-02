@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'jquery-rails'
+  s.add_dependency 'pry'
 
   s.add_development_dependency 'pry'
 end

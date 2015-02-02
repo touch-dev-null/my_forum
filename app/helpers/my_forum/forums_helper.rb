@@ -1,6 +1,20 @@
 module MyForum
   module ForumsHelper
 
+    def forum_status_img(forum)
+      unread = 'lada_logo_unread.jpg'
+      read = 'lada_logo.jpg'
+
+      display_as = unread
+
+      if current_user
+        display_as = read
+        display_as = unread if forum.topics.any?{|topic| topic.unread?(current_user, topic.posts.last)}
+      end
+
+      image_tag(display_as, width: '66px')
+    end
+
     def forum_name(forum)
       html  = content_tag :strong, link_to(forum.name, forum_path(forum))
       html += content_tag :div, forum.description

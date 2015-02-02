@@ -115,5 +115,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
+  coffee-rails
+  haml
+  jquery-rails
   my_forum!
   pry
+  sass-rails

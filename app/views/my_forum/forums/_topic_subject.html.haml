@@ -3,8 +3,9 @@
     - if topic.pinned?
       %span.label.label-warning.pin-sign
         %span.glyphicon.glyphicon-pushpin
-
+    - if topic.unread?(current_user, topic.posts.last)
+      .new_topic.label.label-warning= t('.new')
     = link_to topic.name, forum_topic_path(@forum, topic)
 .row
-  .col-md-12
+  .col-md-12.topic_author
     = t('.author', author: topic.owner.login)

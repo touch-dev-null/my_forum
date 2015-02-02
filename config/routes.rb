@@ -15,6 +15,8 @@ MyForum::Engine.routes.draw do
 
     match 'forums', to: 'forums#index', via: [:get]
 
+    resources :users
+    resources :roles
     resources :categories do
       resources :forums
     end

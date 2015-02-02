@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title Forum
+    = stylesheet_link_tag 'my_forum/application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'my_forum/application', 'data-turbolinks-track' => true
+    = csrf_meta_tag
+
+  %body#admin
+    %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation'}
+      .container-fluid
+        .navbar-header
+          =link_to 'Admin panel', admin_root_path, class: 'navbar-brand'
+
+
+    #admin-content.container-fluid
+      .row
+        .col-sm-3.col-md-2.sidebar
+          %ul.nav.nav-sidebar
+            %li= link_to t('.manage_forums'), admin_forums_path
+            %li= link_to t('.manage_roles'), admin_roles_path
+            %li= link_to t('.manage_users'), admin_users_path
+
+        .col-sm-9.col-md-10
+          = yield
+
+

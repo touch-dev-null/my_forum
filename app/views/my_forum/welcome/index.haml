@@ -8,7 +8,7 @@
         .box
           - category.forums.each do |forum|
             .row.forum-row
-              .col-md-1.col-sm-1= image_tag('/lada_logo.jpg', width: '66px')
+              .col-md-1.col-sm-1= forum_status_img(forum)
               .col-md-6.col-sm-6= forum_name(forum)
               .col-md-2.col-sm-2.forum-info= forum_stat(forum)
               .col-md-3.col-sm-3.forum-last-message-info= forum_last_message_info(forum)

@@ -13,5 +13,20 @@ module MyForum
     def owner
       posts.first.user
     end
+
+    def unread?(current_user, last_post)
+      return true unless current_user
+
+      log = LogReadMark.where(user_id: current_user.id, topic_id: self.id, post_id: last_post.id).count
+      log >= 1 ? false : true
+    end
+
+    def mark_as_read(current_user, last_topic)
+      return true unless current_user
+
+      log = LogReadMark.find_or_create_by(user_id: current_user.id, topic_id: self.id)
+      log.post_id = last_topic.id
+      log.save
+    end
   end
 end

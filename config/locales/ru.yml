@@ -5,6 +5,10 @@ ru:
         index:
           create_category: 'Создать новую категорию'
 
+      roles:
+        new:
+          role_name: 'Название роли'
+
 
       categories:
         new:

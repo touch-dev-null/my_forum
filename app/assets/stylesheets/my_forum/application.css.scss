@@ -11,6 +11,12 @@
  * file per style scope.
  *
  *= require_tree .
- *= require bootstrap
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.buttons_for_new_topic {
+  margin-top: 10px;
+}

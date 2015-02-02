@@ -1,0 +1,12 @@
+.page-header
+  %h2= t('.roles')
+
+.pull-right=link_to t('.create-role'), new_admin_role_path, class: 'btn btn-primary btn-sm'
+
+- if @roles.blank?
+  =t('.no-roles')
+- else
+  %table
+    - @roles.each do |role|
+      %tr
+        %td= role.name
