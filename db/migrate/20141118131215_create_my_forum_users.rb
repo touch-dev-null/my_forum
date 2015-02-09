@@ -8,7 +8,10 @@ class CreateMyForumUsers < ActiveRecord::Migration
       t.integer :posts_count
       t.boolean :is_admin, default: false
       t.boolean :is_moderator, default: false
+      t.boolean :is_deleted, default: false
+      t.boolean :permanently_banned, default: false
       t.timestamps
+      t.timestamp :last_logged_in
     end
 
     MyForum::User.reset_column_information

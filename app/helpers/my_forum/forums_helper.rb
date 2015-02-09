@@ -9,7 +9,7 @@ module MyForum
 
       if current_user
         display_as = read
-        display_as = unread if forum.topics.any?{|topic| topic.unread?(current_user, topic.posts.last)}
+        #display_as = unread if forum.topics.any?{|topic| topic.unread?(current_user, topic.posts.last)}
       end
 
       image_tag(display_as, width: '66px')
@@ -28,13 +28,19 @@ module MyForum
     end
 
     def forum_last_message_info(forum)
-      recent_topic = forum.topics.order(:updated_at).first
-      post = recent_topic.posts.last if recent_topic
+      info = forum.latest_topic_info
 
-      html  = content_tag(:div, recent_topic ? (t('.last_answer_from') + post.user.login) : '-' )
-      html += content_tag(:div, recent_topic ? (t('.in_forum') + recent_topic.name) : '-' )
-      html += content_tag(:div, recent_topic ? post.updated_at : '-' )
+      html  = content_tag(:div, info ? (t('.last_answer_from') + info.user_login) : '-' )
+      html += content_tag(:div, info ? (t('.in_forum') + info.topic_name) : '-' )
+      html += content_tag(:div, info ? info.post_created_at : '-' )
       html.html_safe
+    end
+
+    def new_topic_button
+      return unless @forum
+      content_tag :div, class: 'buttons_for_new_topic' do
+        link_to t('creta_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'
+      end
     end
   end
 end

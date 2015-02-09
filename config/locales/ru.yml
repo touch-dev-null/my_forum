@@ -54,6 +54,6 @@ ru:
       user_navbar:
         welcome_to_forum: 'Добро пожаловать'
         private_messages: 'Личные сообщения'
-        new_forum_messages: 'Новые сообщения'
+        new_forum_messages: 'Непрочитанные темы'
         user_profile: 'Профиль'
         logout: 'Выход'

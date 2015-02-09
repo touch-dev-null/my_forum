@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'pry'
+  s.add_dependency 'will_paginate', '~> 3.0.6'
 
   s.add_development_dependency 'pry'
 end

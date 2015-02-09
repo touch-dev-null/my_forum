@@ -3,6 +3,7 @@ class CreateMyForumPosts < ActiveRecord::Migration
     create_table :my_forum_posts do |t|
       t.integer :user_id
       t.integer :topic_id
+      t.integer :forum_id
       t.text    :text
       t.timestamps
     end

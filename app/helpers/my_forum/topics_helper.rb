@@ -5,7 +5,7 @@ module MyForum
       post = topic.posts.last
 
       html  = content_tag(:div, post.created_at)
-      html += content_tag(:div,post.user.login)
+      html += content_tag(:div, post.user.login)
       html.html_safe
     end
 
