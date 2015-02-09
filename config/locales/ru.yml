@@ -48,6 +48,12 @@ ru:
         quick_answer: 'Быстрый ответ'
         advanced_answer: 'Расширенный ответ'
 
+    users:
+      new:
+        login: 'Логин'
+        email: 'E-mail'
+        password: 'Пароль'
+
 
   layouts:
     my_forum:
@@ -57,3 +63,6 @@ ru:
         new_forum_messages: 'Непрочитанные темы'
         user_profile: 'Профиль'
         logout: 'Выход'
+      guest_navbar:
+        login: 'Войти'
+        register: 'Зарегестрироваться'

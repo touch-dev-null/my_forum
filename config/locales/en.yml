@@ -44,6 +44,11 @@ en:
         quick_answer: 'Quick answer'
         advanced_answer: 'Advanced answer'
 
+    users:
+      new:
+        login: 'Login'
+        email: 'E-mail'
+        password: 'Password'
 
   layouts:
     my_forum:
@@ -53,3 +58,6 @@ en:
         new_forum_messages: 'New Forum messages'
         user_profile: 'My profile'
         logout: 'Logout'
+      guest_navbar:
+        login: 'Login'
+        register: 'Register'

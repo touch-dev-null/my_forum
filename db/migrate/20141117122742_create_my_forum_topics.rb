@@ -3,6 +3,7 @@ class CreateMyForumTopics < ActiveRecord::Migration
     create_table :my_forum_topics do |t|
       t.integer :forum_id
       t.integer :user_id
+      t.integer :latest_post_id
       t.string  :name
       t.string  :description
       t.integer :views

@@ -6,11 +6,7 @@ module MyForum
       read = 'lada_logo.jpg'
 
       display_as = unread
-
-      if current_user
-        display_as = read
-        #display_as = unread if forum.topics.any?{|topic| topic.unread?(current_user, topic.posts.last)}
-      end
+      display_as = read unless current_user && forum.has_unread_posts?(current_user)
 
       image_tag(display_as, width: '66px')
     end

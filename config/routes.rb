@@ -7,6 +7,8 @@ MyForum::Engine.routes.draw do
   match 'unread_topics', to: 'forums#unread_topics', via: [:get], as: :unread_topics
   match 'mark_all_as_read', to: 'forums#mark_all_as_read', via: [:get], as: :mark_all_as_read
 
+  resources :users
+
   resources :forums, only: [:index, :show] do
     resources :topics do
       resources :posts
