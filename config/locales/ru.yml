@@ -29,6 +29,7 @@ ru:
         messages_count: "%{messages_count} сообщений"
         last_answer_from: 'Последний ответ от: '
         in_forum: 'в '
+        users_online: 'Сейчас на форуме: '
 
     forums:
       topic_subject:

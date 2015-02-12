@@ -6,6 +6,8 @@ module MyForum
     has_many :user_roles
     has_many :roles, through: :user_roles
 
+    scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
+
     before_save :encrypt_password
 
     def valid_password?(submitted_password)

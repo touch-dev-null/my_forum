@@ -2,6 +2,9 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class Admin::RolesController < ApplicationController
+
+    before_filter :verify_admin
+    
     layout 'layouts/my_forum/admin_application'
 
     def index

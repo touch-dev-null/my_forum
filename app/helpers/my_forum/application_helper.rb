@@ -21,5 +21,9 @@ module MyForum
       html.html_safe
     end
 
+    def online_users
+      User.online.pluck(:login).join(', ')
+    end
+
   end
 end

@@ -12,3 +12,7 @@
               .col-md-6.col-sm-6= forum_name(forum)
               .col-md-2.col-sm-2.forum-info= forum_stat(forum)
               .col-md-3.col-sm-3.forum-last-message-info= forum_last_message_info(forum)
+
+  #online_users.well
+    = t('.users_online')
+    = online_users
