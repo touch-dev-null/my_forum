@@ -5,6 +5,8 @@ module MyForum
     has_many :posts, class_name: 'MyForum::Post'
     has_many :user_roles
     has_many :roles, through: :user_roles
+    has_many :user_group_links
+    has_many :user_groups, through: :user_group_links
 
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
 

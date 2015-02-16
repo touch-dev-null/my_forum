@@ -10,6 +10,7 @@ module MyForum
 
     def show
       @topic = Topic.find(params[:id])
+      check_access_permissions(@topic)
       @topic_posts = @topic.posts
       @new_post = Post.new #TODO if quick_answer_enabled
 

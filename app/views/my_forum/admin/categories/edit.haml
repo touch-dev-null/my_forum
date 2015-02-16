@@ -1,0 +1,9 @@
+%h2= t('.edit_new_category')
+
+= form_for @category, url: admin_category_path(@category) do |f|
+  = f.text_field :name
+
+  .access
+    =collection_check_boxes(:category, :user_group_ids, @user_groups, :id, :name)
+
+  = f.submit

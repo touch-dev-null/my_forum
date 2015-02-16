@@ -16,10 +16,21 @@ module MyForum
       @category.save ? redirect_to(admin_forums_path) : raise('category not created')
     end
 
+    def edit
+      @category = Category.find(params[:id])
+      @user_groups = UserGroup.all
+    end
+
+    def update
+      @category = Category.find(params[:id])
+      @category.update_attributes(category_params)
+      redirect_to edit_admin_category_path(@category)
+    end
+
     protected
 
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, { :user_group_ids => [] })
     end
   end
 end

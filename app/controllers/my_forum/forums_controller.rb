@@ -5,6 +5,7 @@ module MyForum
     before_filter :find_forum, only: [:show]
 
     def show
+      check_access_permissions(@forum)
       @forum_topics = @forum.topics_with_latest_post_info(page: params[:page], per_page: 30)
     end
 

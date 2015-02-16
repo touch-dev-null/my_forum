@@ -1,0 +1,10 @@
+.page-header
+  %h2= t('.users')
+
+.container-fluid
+  .users_count= @users_count
+
+  .user_groups
+    %ul
+    - @user_groups.each do |user_group|
+      %li= "#{user_group.name} (#{user_group.users.count})"
