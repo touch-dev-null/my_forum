@@ -5,6 +5,6 @@
   .col-md-2
     = render 'user_info', post: post
   .col-md-10
-    = post.created_at
+    .created_at= t('.sent', datetime: post.created_at)
     %br
-    = post.text
+    = format_post_text(post)

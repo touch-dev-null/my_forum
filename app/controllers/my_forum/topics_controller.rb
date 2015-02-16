@@ -11,7 +11,7 @@ module MyForum
     def show
       @topic = Topic.find(params[:id])
       check_access_permissions(@topic)
-      @topic_posts = @topic.posts
+      @topic_posts = @topic.posts.paginate(per_page: 16, page: params[:page])
       @new_post = Post.new #TODO if quick_answer_enabled
 
       @topic.mark_as_read(current_user, @topic_posts.last)

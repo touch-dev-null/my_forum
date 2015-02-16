@@ -11,7 +11,7 @@ module MyForum
 
       if @forum && @topic && !@topic.new_record?
         html_li += content_tag :li, '&rarr;'.html_safe
-        html_li += content_tag :li, link_to(@topic.name, forum_topic_path(@forum, @topic))
+        html_li += content_tag :li, link_to(@topic.name.html_safe, forum_topic_path(@forum, @topic))
       end
 
       html = content_tag :ul, class: 'draw-navigation' do

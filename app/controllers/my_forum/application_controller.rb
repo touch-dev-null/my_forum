@@ -33,6 +33,8 @@ module MyForum
     end
 
     def check_access_permissions(obj)
+      return true if current_user && current_user.is_admin
+
       category_user_groups = case obj.class.to_s
                                when 'MyForum::Forum'
                                  obj.category.user_groups
@@ -41,7 +43,7 @@ module MyForum
                                else
                                  []
                              end
-      
+
       redirect_to root_path if (category_user_groups.map(&:name) & current_user_groups).blank?
     end
   end

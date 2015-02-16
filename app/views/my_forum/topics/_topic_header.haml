@@ -1,15 +1,4 @@
 .row.topic-header
   .col-md-12
-    %h2= topic.name
+    %h2= topic.name.html_safe
     .info= "#{topic.info[:author]}, #{topic.info[:created]}"
-
-  -#.row
-  -#  .col-md-12
-  -#    =t('.tags')
-  -#
-  -#.row
-  -#  .col-md-12
-  -#    =t('.page')
-  -#
-  -#.row
-  -#  .col-md-12

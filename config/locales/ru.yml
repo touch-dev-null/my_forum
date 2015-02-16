@@ -32,6 +32,13 @@ ru:
         users_online: 'Сейчас на форуме: '
 
     forums:
+      show:
+        subject: 'Тема'
+        author: 'Автор'
+        answers: 'Ответов'
+        viewa: 'Просмотров'
+        mark_all_as_read: 'Отметить все как прочитанное'
+        last_message: 'Последний ответ'
       topic_subject:
         author: "Автор: %{author}"
 
@@ -48,6 +55,8 @@ ru:
       quick_answer:
         quick_answer: 'Быстрый ответ'
         advanced_answer: 'Расширенный ответ'
+      post:
+        sent: "Отправленно: %{datetime}"
 
     users:
       new:
