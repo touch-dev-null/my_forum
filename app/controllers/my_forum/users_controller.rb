@@ -8,9 +8,15 @@ module MyForum
     end
 
     def create
-      @user = User.create(user_params)
-      session[:user_id] = @user.id
-      redirect_to root_path
+      @user = User.new(user_params)
+      if @user.valid?
+        @user.user_groups << UserGroup::MEMBER_GROUP
+        @user.save
+        session[:user_id] = @user.id
+        redirect_to root_path
+      else
+        render :new
+      end
     end
 
     def signin
@@ -23,14 +29,21 @@ module MyForum
         user = User.find_by_login(params[:user][:login])
         if user && user.valid_password?(params[:user][:password])
           session[:user_id] = user.id
-          redirect_to admin_root_path
+          redirect_to root_path
           return
         else
           flash[:error] = t('.invalid_login_or_password')
           return
         end
       end
+    end
 
+    def forgot_password
+      if request.post?
+        return unless user = User.find_by_email(params[:user][:email])
+        UserMailer.reset_password_email(user).deliver_now
+        redirect_to root_path
+      end
     end
 
     def logout

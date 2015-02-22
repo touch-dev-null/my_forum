@@ -25,5 +25,11 @@ module MyForum
       User.online.pluck(:login).join(', ')
     end
 
+    def errors_for(obj)
+      return unless obj.errors
+
+      content_tag :div, obj.errors.full_messages.to_sentence
+    end
+
   end
 end

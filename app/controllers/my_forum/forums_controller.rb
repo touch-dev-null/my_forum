@@ -22,7 +22,7 @@ module MyForum
       Topic.find_in_batches(batch_size: 500) do |topic_group|
         topic_group.each do |topic|
           log = LogReadMark.find_or_create_by(user_id: current_user.id, topic_id: topic.id)
-          log.post_id = topic.posts.last.id
+          log.post_id = topic.latest_post_id
           log.save
         end
       end

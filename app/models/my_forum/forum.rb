@@ -36,6 +36,7 @@ module MyForum
 
     def self.unread_topics_with_latest_post_info(user_id:, page: 0, per_page: 30)
       log_topic_ids = LogReadMark.where(user_id: user_id).pluck(:topic_id)
+      log_topic_ids = [0] if log_topic_ids.empty?
 
       Topic.paginate_by_sql("
         SELECT my_forum_topics.*, my_forum_users.login AS last_post_user_login, my_forum_posts.created_at AS last_post_time

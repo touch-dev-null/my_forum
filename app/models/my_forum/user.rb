@@ -10,6 +10,8 @@ module MyForum
 
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
 
+    validates_uniqueness_of :login, :email
+
     before_save :encrypt_password
 
     def valid_password?(submitted_password)

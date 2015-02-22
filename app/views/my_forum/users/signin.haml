@@ -1,10 +1,14 @@
-#sign_in
-  =form_for :user, :url => signin_path do |f|
-    =f.label :login, t('user.login')
-    =f.text_field :login
+#sign_in.container-fluid
+  .col-md-6.col-md-offset-3.text-center
+    %h2= t('.sign_in_head')
+    =form_for :user, :url => signin_path do |f|
+      =f.label :login, t('.login')
+      =f.text_field :login
 
-    =f.label :password, t('user.password')
-    =f.password_field :password
+      =f.label :password, t('.password')
+      =f.password_field :password
 
-    .center
-      =f.submit
+      .center
+        =f.submit t('.enter'), class: 'btn btn-sm btn-primary'
+      .center
+        =link_to t('.forgot_password'), forgot_password_path

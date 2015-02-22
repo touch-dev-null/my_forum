@@ -45,6 +45,8 @@ en:
         advanced_answer: 'Advanced answer'
 
     users:
+      signin:
+        sign_in_head: 'Forum Enter'
       new:
         login: 'Login'
         email: 'E-mail'

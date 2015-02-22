@@ -59,10 +59,22 @@ ru:
         sent: "Отправленно: %{datetime}"
 
     users:
+      signin:
+        sign_in_head: 'Вход на форум'
+        login: 'Логин'
+        password: 'Пароль'
+        enter: 'Войти'
+        forgot_password: 'Восстановить пароль'
       new:
         login: 'Логин'
         email: 'E-mail'
         password: 'Пароль'
+        register_new_user: 'Регистрация нового участника'
+        register: 'Зарегестрироваться'
+
+      forgot_password:
+        forgot_password_head: 'Восстановление пароля'
+        reset_password: 'Сбросить пароль'
 
 
   layouts:
@@ -76,3 +88,13 @@ ru:
       guest_navbar:
         login: 'Войти'
         register: 'Зарегестрироваться'
+
+  activerecord:
+    errors:
+      models:
+        my_forum/user:
+          attributes:
+            login:
+              taken: 'Занят'
+            email:
+              taken: 'Занят'
