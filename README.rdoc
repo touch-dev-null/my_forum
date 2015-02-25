@@ -1,3 +1,5 @@
+{<img src="https://travis-ci.org/vintyara/my_forum.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/vintyara/my_forum]
+
 = MyForum
 
 This project rocks and uses MIT-LICENSE.
