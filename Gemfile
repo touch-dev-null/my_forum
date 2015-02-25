@@ -6,6 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 gem 'pry'
+gem 'haml'
 gem 'rspec'
 gem 'rspec-rails', '~> 3.0'
 gem 'sqlite3'

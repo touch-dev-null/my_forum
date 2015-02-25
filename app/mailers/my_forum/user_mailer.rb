@@ -5,7 +5,7 @@ module MyForum
 
       o = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
       @new_password = (0...10).map { o[rand(o.length)] }.join
-  binding.pry
+
       @user.password = @new_password
       @user.save
       mail(to: @user.email, subject: 'vaz.od.ua - New password')

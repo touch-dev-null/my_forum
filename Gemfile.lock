@@ -171,6 +171,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   my_forum!
   pry
   rspec
