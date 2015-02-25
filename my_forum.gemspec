@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.test_files = Dir["test/**/*"]
+  s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.2.0"
   s.add_dependency 'haml'
@@ -23,8 +23,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails'
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'pry'
   s.add_dependency 'will_paginate', '~> 3.0.6'
-
-  s.add_development_dependency 'pry'
 end

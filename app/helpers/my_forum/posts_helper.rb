@@ -4,16 +4,22 @@ module MyForum
       text = post.text
 
       # Images
-      text.gsub!(/\[img\]/,   '<img src="')
-      text.gsub!(/\[\/img\]/, '" />')
+      text.gsub!(/\[img\]/i,   '<img src="')
+      text.gsub!(/\[\/img\]/i, '" />')
 
       # Bold text
-      text.gsub!(/\[b\]/,   '<strong>')
-      text.gsub!(/\[\/b\]/, '</strong>')
+      text.gsub!(/\[b\]/i,   '<strong>')
+      text.gsub!(/\[\/b\]/i, '</strong>')
 
       # Quote
-      text.gsub!(/\[quote.*]/, '<span class="quote">')
-      text.gsub!(/\[\quote\]/, '<\span>')
+      text.gsub!(/\[quote.*]/i, '<span class="quote">')
+      text.gsub!(/\[\quote\]/i, '<\span>')
+
+      # Link
+      #text.scan(/(?<url>\[url=(.*?)\])(?<url_text>.*?)\[\/url\]/) {|m| puts m.first}
+      #text.match(/(?<url>\[url=(.*?)\])(?<url_text>.*?)\[\/url\]/)
+      #\[url=(.*?)\](.*?)\[\/url\]
+      text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i) { "<a href='#{$1}'>#{$2}</a>" }
 
       text.html_safe
     end

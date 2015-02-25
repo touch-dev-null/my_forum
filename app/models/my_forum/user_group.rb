@@ -6,7 +6,8 @@ module MyForum
     has_many :category_permissions
     has_many :categories, through: :category_permissions
 
-    GUEST_GROUP   = UserGroup.find(1)
-    MEMBER_GROUP  = UserGroup.find(2)
+    # TODO fix this
+    GUEST_GROUP   = UserGroup.find_by_name('Guest') #find(1)
+    MEMBER_GROUP  = UserGroup.find_by_name('Member') #.find(2)
   end
 end

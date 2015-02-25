@@ -5,6 +5,11 @@ module MyForum
     require "jquery-rails"
     require 'bootstrap-sass'
 
+    config.generators do |g|
+      g.test_framework      :rspec,        :fixture => false
+      g.assets false
+      g.helper false
+    end
 
     USE_CUSTOM_USER_MODEL       = false
     CUSTOM_USER_CLASS           = 'User'
