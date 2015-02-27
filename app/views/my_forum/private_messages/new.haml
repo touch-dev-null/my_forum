@@ -1,0 +1,16 @@
+.container-fluid
+  .row
+    .col-md-2
+      = render partial: 'sidebar'
+
+    .col-md-10
+      %h2= t('.new_private_message')
+
+      = errors_for @pm
+
+      = form_for @pm, url: private_messages_path, role: 'form' do |form|
+        .form-group= form.text_field :recipient, class: 'subject form-control', placeholder: t('.recipient')
+        .form-group= form.text_field :subject, class: 'subject form-control', placeholder: t('.subject')
+        .form-group= form.text_area :body, class: 'body form-control', placeholder: t('.body')
+
+        = form.submit class: 'btn btn-primary btn-sm'

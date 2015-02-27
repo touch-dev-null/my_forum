@@ -22,6 +22,12 @@ module MyForum
       current_user.user_groups.map &:name
     end
 
+    def new_pm_count
+      return unless current_user
+      PrivateMessage.unread_count_for(current_user)
+    end
+    helper_method :new_pm_count
+
     private
 
     def user_activity

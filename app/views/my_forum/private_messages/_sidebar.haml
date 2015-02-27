@@ -1,0 +1,10 @@
+%ul.list-group
+  %li.list-group-item
+    .badge 0
+    = link_to t('.inbox'), private_messages_path
+  %li.list-group-item
+    .badge 0
+    = link_to t('.outbox'), private_messages_path
+  %li.list-group-item
+    .badge 0
+    = link_to t('.deleted'), private_messages_path

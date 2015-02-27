@@ -26,9 +26,9 @@ module MyForum
     end
 
     def errors_for(obj)
-      return unless obj.errors
+      return if obj.errors.blank?
 
-      content_tag :div, obj.errors.full_messages.to_sentence
+      content_tag :div, obj.errors.full_messages.to_sentence, class: 'errors_for'
     end
 
   end

@@ -3,8 +3,9 @@
 
 .col-md-6
   .btn-group.pull-right{ role: 'group' }
-    =link_to '#', class: 'btn btn-sm btn-default' do
+    =link_to private_messages_path, class: 'btn btn-sm btn-default' do
       =t('.private_messages')
+      = new_private_messages_count_bage
       %span.glyphicon.glyphicon-envelope
     =link_to unread_topics_path, class: 'btn btn-sm btn-default' do
       =t('.new_forum_messages')

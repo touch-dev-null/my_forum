@@ -1,5 +1,7 @@
 ru:
   my_forum:
+    create_new_pm: 'Написать личное сообщение'
+
     admin:
       forums:
         index:
@@ -75,6 +77,18 @@ ru:
       forgot_password:
         forgot_password_head: 'Восстановление пароля'
         reset_password: 'Сбросить пароль'
+
+    private_messages:
+      sidebar:
+        inbox: 'Входящие'
+        outbox: 'Отправленные'
+        deleted: 'Удаленные'
+      new:
+        recipient: 'Кому'
+        subject: 'Тема'
+        body: 'Сообщение'
+      create:
+        cant_find_recipient: 'Ошибка, пользователя адресата не существует'
 
 
   layouts:

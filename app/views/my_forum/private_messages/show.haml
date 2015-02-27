@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    .col-md-2
+      = render partial: 'sidebar'
+
+    .col-md-10
+      %h2= t('.private_message')
+
+      = @pm.subject
+      = @pm.body
