@@ -35,7 +35,7 @@ module MyForum
     def new_topic_button
       return unless @forum
       content_tag :div, class: 'buttons_for_new_topic' do
-        link_to t('creta_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'
+        link_to t('my_forum.create_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'
       end
     end
   end
