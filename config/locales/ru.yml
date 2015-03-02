@@ -73,10 +73,15 @@ ru:
         password: 'Пароль'
         register_new_user: 'Регистрация нового участника'
         register: 'Зарегестрироваться'
-
       forgot_password:
         forgot_password_head: 'Восстановление пароля'
         reset_password: 'Сбросить пароль'
+      edit:
+        edit_profile: 'Редактирование персональных данных'
+        email: 'Электронная почта'
+        current_password: 'Текущий пароль'
+        new_password: 'Новый пароль'
+
 
     private_messages:
       sidebar:

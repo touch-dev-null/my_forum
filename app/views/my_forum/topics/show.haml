@@ -1,21 +1,21 @@
 .container-fluid
+  .row
+    .col-md-12
+      #topic_header
+        = render 'topic_header', topic: @topic
+  .row
+    .col-md-12
+      #posts
+        .row
+          .col-md-12.topic_posts_info
+            =t('.messages_in_topic', count: @topic.posts.count)
+        .row.post-list-container
+          .box
+            - @topic_posts.each do |post|
+              = render 'post', post: post
 
-  =# link_to t('.post_to_topic'), '#', class: 'btn btn-primary'
+        = will_paginate @topic_posts
 
-  #topic_header
-    = render 'topic_header', topic: @topic
-
-  #posts
-    .row
-      .col-md-12.topic_posts_info
-        =t('.messages_in_topic', count: @topic.posts.count)
-    .row.post-list-container
-      .box
-        - @topic_posts.each do |post|
-          = render 'post', post: post
-
-    = will_paginate @topic_posts
-
-  - if current_user.can_quick_answer?(@topic)
-    #quick_answer
-      = render 'quick_answer', forum: @forum, topic: @topic
+      - if current_user.can_quick_answer?(@topic)
+        #quick_answer
+          = render 'quick_answer', forum: @forum, topic: @topic

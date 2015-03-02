@@ -1,5 +1,5 @@
 .topic_posts_info {
-  background-color: #336699;
+  background-color: #d3daed;
   color: #fff;
   font-size: 11px;
   height: 38px;
@@ -14,11 +14,16 @@
     border: 1px solid #DFDFDF;
     background-color: #fff;
 
+    .post_from_user_login {
+      font-weight: bold;
+      color: #c1ccf5;
+    }
+
     .post-header {
       height: 36px;
       line-height: 36px;
       margin: 0;
-      background-color: #89A4C1;
+      background-color: #4e61a8;
     }
 
     .created_at {

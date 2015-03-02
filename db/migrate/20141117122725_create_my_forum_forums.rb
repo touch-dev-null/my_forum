@@ -6,7 +6,7 @@ class CreateMyForumForums < ActiveRecord::Migration
       t.string :description
       t.integer :topics_count
       t.integer :posts_count
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

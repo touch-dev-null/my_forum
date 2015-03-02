@@ -4,7 +4,7 @@ class CreateMyForumUserGroups < ActiveRecord::Migration
       t.string :name
       t.string :html_color
       t.boolean :default, default: false
-      t.timestamps
+      t.timestamps null: false
     end
 
     MyForum::UserGroup.create!(name: 'Guests')

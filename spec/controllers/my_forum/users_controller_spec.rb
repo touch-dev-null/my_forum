@@ -27,6 +27,7 @@ module MyForum
     describe "#forgot_password" do
       it 'should send new generated password for user' do
         user = User.create!(login: 'demo', password: '12345678', email: 'demo@example.com')
+        session[:user_id] = user.id
         expect(user.valid_password?('12345678')).to be true
 
         post :forgot_password, user: { email: 'demo@example.com'}
@@ -35,6 +36,40 @@ module MyForum
         last_delivery = ActionMailer::Base.deliveries.last
         new_password = last_delivery.text_part.body.decoded.split(' ').last
         expect(user.reload.valid_password?(new_password)).to be true
+      end
+    end
+
+    describe "#edit" do
+      before :each do
+        @user = User.create!(login: 'demo', password: '12345678', email: 'demo@example.com')
+        session[:user_id] = @user.id
+      end
+
+      it 'should not change password' do
+        patch :update, id: @user.id, user: {email: 'abc@google.com', password: ''}
+        expect(@user.reload.valid_password?('12345678')).to be true
+        expect(@user.reload.email).to eq('abc@google.com')
+      end
+
+      it 'should not change password if old password not given' do
+        patch :update, id: @user.id, user: {email: 'abc@google.com', password: 'new_password'}
+        expect(@user.reload.valid_password?('new_password')).to be false
+      end
+
+      it 'should update user with password' do
+        expect(@user.reload.valid_password?('12345678')).to be true
+        patch :update, id: @user.id, user: {email: 'abc@google.com', password: '12345678', new_password: 'new_password'}
+        expect(@user.reload.valid_password?('new_password')).to be true
+        expect(@user.reload.email).to eq('abc@google.com')
+      end
+    end
+
+    describe "#create" do
+      it 'should create new user' do
+        post :create, user: {email: 'new_user@google.com', password: 'new_user_pass', login: 'new_user'}
+        user = User.find_by_email('new_user@google.com')
+        expect(user.login).to eq('new_user')
+        expect(user.valid_password?('new_user_pass')).to be true
       end
     end
   end

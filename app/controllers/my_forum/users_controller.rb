@@ -3,8 +3,19 @@ require_dependency "my_forum/application_controller"
 module MyForum
   class UsersController < ApplicationController
 
+    before_filter :authorize_user, only: [:edit, :update, :forgot_password]
+
     def new
       @user = User.new
+    end
+
+    def edit
+    end
+
+    def update
+      update_password
+      current_user.update_columns(user_update_params)
+      redirect_to edit_user_path(current_user)
     end
 
     def create
@@ -51,10 +62,27 @@ module MyForum
       redirect_to admin_root_path
     end
 
+    def authorize_user
+      redirect_to root_path unless current_user
+    end
+
     private
 
     def user_params
       params.require(:user).permit(:login, :email, :password)
+    end
+
+    def user_update_params
+      params.require(:user).permit(:email)
+    end
+
+    def update_password
+      current_password = user_params.delete(:password)
+      new_password = params[:user].delete(:new_password)
+
+      return unless new_password
+      return unless current_user.valid_password?(current_password)
+      current_user.update_attributes(password: new_password)
     end
 
   end

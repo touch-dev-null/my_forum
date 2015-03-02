@@ -5,7 +5,7 @@ class CreateMyForumPosts < ActiveRecord::Migration
       t.integer :topic_id
       t.integer :forum_id
       t.text    :text
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

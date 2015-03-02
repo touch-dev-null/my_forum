@@ -25,6 +25,10 @@ module MyForum
       User.online.pluck(:login).join(', ')
     end
 
+    def today_was_users
+      User.today_visited.pluck(:login).join(', ')
+    end
+
     def errors_for(obj)
       return if obj.errors.blank?
 

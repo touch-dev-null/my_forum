@@ -4,7 +4,7 @@ class CreateMyForumLogReadMarks < ActiveRecord::Migration
       t.integer :user_id
       t.integer :topic_id
       t.integer :post_id
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

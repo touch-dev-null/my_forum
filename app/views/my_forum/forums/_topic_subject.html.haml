@@ -7,8 +7,9 @@
         %span.glyphicon.glyphicon-pushpin
     - if topic.unread?(current_user, topic.posts.last)
       .new_topic.label.label-warning= t('.new')
+
     = link_to topic.name.html_safe, forum_topic_path(forum, topic)
 .row
-  .col-md-12.topic_author
+  .col-md-12.topic_description
     =topic.description.html_safe
     =# t('.author', author: topic.owner.login)

@@ -9,6 +9,7 @@ module MyForum
     has_many :user_groups, through: :user_group_links
 
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
+    scope :today_visited, -> { where("updated_at > ?", Time.now.beginning_of_day) }
 
     validates_uniqueness_of :login, :email
 

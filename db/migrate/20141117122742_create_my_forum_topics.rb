@@ -11,7 +11,7 @@ class CreateMyForumTopics < ActiveRecord::Migration
       t.boolean :pinned, default: false
       t.boolean :closed, default: false
       t.boolean :deleted, default: false
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

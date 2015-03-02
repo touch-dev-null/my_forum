@@ -12,8 +12,10 @@ module MyForum
       text.gsub!(/\[\/b\]/i, '</strong>')
 
       # Quote
-      text.gsub!(/\[quote.*]/i, '<span class="quote">')
-      text.gsub!(/\[\quote\]/i, '<\span>')
+      # text.gsub!(/\[quote.*]/i, '<span class="bbqoute">')
+      # text.gsub!(/\[\/quote\]/i, '</span>')
+      text.gsub!(/\[quote.*]/i, 'quote:')
+      text.gsub!(/\[\/quote\]/i, '')
 
       # Link
       #text.scan(/(?<url>\[url=(.*?)\])(?<url_text>.*?)\[\/url\]/) {|m| puts m.first}

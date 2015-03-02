@@ -4,7 +4,7 @@ class CreateMyForumRoles < ActiveRecord::Migration
       t.string :name
       t.string :color
       t.text   :rights
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

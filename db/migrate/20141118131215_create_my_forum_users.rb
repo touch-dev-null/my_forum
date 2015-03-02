@@ -10,7 +10,7 @@ class CreateMyForumUsers < ActiveRecord::Migration
       t.boolean :is_moderator, default: false
       t.boolean :is_deleted, default: false
       t.boolean :permanently_banned, default: false
-      t.timestamps
+      t.timestamps null: false
       t.timestamp :last_logged_in
     end
 

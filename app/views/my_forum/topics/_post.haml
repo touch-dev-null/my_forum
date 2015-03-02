@@ -1,10 +1,12 @@
 .row.post-header
-  .col-md-12
-    =post.user.try(:login)
+  .col-md-12.post_from_user_login
+    - user_login = post.user.try(:login)
+    = online_user_marker(user_login)
+    = user_login
 .row
   .col-md-2
     = render 'user_info', post: post
   .col-md-10
     .created_at= t('.sent', datetime: post.created_at)
-    %br
-    = format_post_text(post)
+    #post_container
+      = format_post_text(post)

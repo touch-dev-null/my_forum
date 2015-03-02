@@ -10,7 +10,7 @@
     =link_to unread_topics_path, class: 'btn btn-sm btn-default' do
       =t('.new_forum_messages')
       %span.glyphicon.glyphicon-eye-open
-    =link_to '#', class: 'btn btn-sm btn-default' do
+    =link_to edit_user_path(current_user), class: 'btn btn-sm btn-default' do
       =t('.user_profile')
       %span.glyphicon.glyphicon-user
     = link_to logout_path, class: 'btn btn-sm btn-default' do
