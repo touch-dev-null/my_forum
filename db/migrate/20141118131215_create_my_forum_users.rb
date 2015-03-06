@@ -15,7 +15,7 @@ class CreateMyForumUsers < ActiveRecord::Migration
     end
 
     MyForum::User.reset_column_information
-    user = MyForum::User.new(login: 'admin', password: 'admin', email: 'admin@example.com')
+    user = MyForum::User.new(login: 'admin', password: 'admin', is_admin: true, email: 'admin@example.com')
     user.save
   end
 
