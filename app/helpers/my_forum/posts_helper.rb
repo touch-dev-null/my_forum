@@ -1,8 +1,10 @@
 module MyForum
   module PostsHelper
     def format_post_text(post)
-      text = post.text
+      format_bbcode(post.text)
+    end
 
+    def format_bbcode(text)
       # Images
       text.gsub!(/\[img\]/i,   '<img src="')
       text.gsub!(/\[\/img\]/i, '" />')
@@ -10,6 +12,9 @@ module MyForum
       # Bold text
       text.gsub!(/\[b\]/i,   '<strong>')
       text.gsub!(/\[\/b\]/i, '</strong>')
+
+      text.gsub!(/\[i\]/i,   '<i>')
+      text.gsub!(/\[\/i\]/i, '</i>')
 
       # Quote
       # text.gsub!(/\[quote.*]/i, '<span class="bbqoute">')

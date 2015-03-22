@@ -3,7 +3,7 @@ require_dependency "my_forum/application_controller"
 module MyForum
   class UsersController < ApplicationController
 
-    before_filter :authorize_user, only: [:edit, :update, :forgot_password]
+    before_filter :authorize_user, only: [:edit, :update]
 
     def new
       @user = User.new
@@ -64,6 +64,17 @@ module MyForum
 
     def authorize_user
       redirect_to root_path unless current_user
+    end
+
+    def autocomplete
+      #TODO mysql safe
+      search_string = params[:str]
+      user_list = MyForum::User.where("login LIKE '%#{search_string}%'").pluck(:login)
+
+      respond_to do |format|
+        format.html { raise 'denied' }
+        format.js { render json: user_list }
+      end
     end
 
     private

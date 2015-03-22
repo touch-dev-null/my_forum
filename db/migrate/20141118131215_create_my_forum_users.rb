@@ -4,6 +4,14 @@ class CreateMyForumUsers < ActiveRecord::Migration
       t.string  :login
       t.string  :password
       t.string  :salt
+      t.string  :real_name
+      t.integer :gender
+      t.date    :birthdate
+      t.string  :signature
+      t.string  :avatar
+      t.string  :location
+      t.string  :user_ip
+      t.text    :additional_info
       t.string  :email
       t.integer :posts_count
       t.boolean :is_admin, default: false

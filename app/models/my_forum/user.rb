@@ -11,16 +11,16 @@ module MyForum
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
     scope :today_visited, -> { where("updated_at > ?", Time.now.beginning_of_day) }
 
+    enum gender: [:female, :male, :alien]
+    serialize :additional_info
+
+
     validates_uniqueness_of :login, :email
 
     before_save :encrypt_password
 
     def valid_password?(submitted_password)
       password == encrypt(submitted_password)
-    end
-
-    def can_quick_answer?(forum)
-      true
     end
 
     private

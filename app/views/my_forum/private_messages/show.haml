@@ -4,7 +4,7 @@
       = render partial: 'sidebar'
 
     .col-md-10
-      %h2= t('.private_message')
+      = reply_pm_button(@pm)
 
-      = @pm.subject
-      = @pm.body
+      %h3= @pm.subject
+      = format_bbcode @pm.body

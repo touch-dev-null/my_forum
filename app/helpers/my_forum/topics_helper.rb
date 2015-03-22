@@ -7,5 +7,10 @@ module MyForum
       html.html_safe
     end
 
+    def can_quick_answer?(forum)
+      return false unless current_user
+      true
+    end
+
   end
 end

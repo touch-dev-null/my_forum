@@ -13,12 +13,12 @@
           %thead
             %tr
               %td=t('.date')
-              %td=t('.subject')
               %td=t('.from')
+              %td=t('.subject')
           %tbody
             - @private_messages.each do |message|
               %tr
                 - html_class = 'unread' if message.unread?
                 %td=link_to message.created_at, private_message_url(message), class: html_class
+                %td=link_to message.sender_login, private_message_url(message), class: html_class
                 %td=link_to message.subject, private_message_url(message), class: html_class
-                %td=link_to message.body, private_message_url(message), class: html_class

@@ -24,6 +24,7 @@ module MyForum
 
     def new
       @pm = PrivateMessage.new
+      @reply_pm = PrivateMessage.find(params[:reply_for_id]) if params[:reply_for_id]
     end
 
     def create
@@ -42,7 +43,9 @@ module MyForum
       end
 
       @pm.recipient_id = recipient.id
+      @pm.recipient_login = recipient.login
       @pm.sender_id = current_user_id
+      @pm.sender_login = current_user.login
       @pm.assign_attributes(pm_params)
       @pm.save
 

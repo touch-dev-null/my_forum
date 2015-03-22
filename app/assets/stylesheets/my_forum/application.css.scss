@@ -27,3 +27,27 @@
   border: 1px solid red;
   margin-bottom: 14px;
 }
+
+#autocomplete_popup {
+  position: absolute;
+  border: 1px solid grey;
+  padding: 0;
+  background-color: #fff;
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    width: 200px;
+
+    li {
+      padding: 4px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    li:hover {
+      background-color: cornflowerblue;
+    }
+  }
+
+}

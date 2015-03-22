@@ -16,6 +16,6 @@
 
         = will_paginate @topic_posts
 
-      - if current_user.can_quick_answer?(@topic)
+      - if can_quick_answer?(@topic)
         #quick_answer
           = render 'quick_answer', forum: @forum, topic: @topic
