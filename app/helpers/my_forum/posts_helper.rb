@@ -16,19 +16,29 @@ module MyForum
       text.gsub!(/\[i\]/i,   '<i>')
       text.gsub!(/\[\/i\]/i, '</i>')
 
+      # Cut
+      text.gsub!(/\[cut\]/i,   '<pre>')
+      text.gsub!(/\[\/cut\]/i, '</pre>')
+
+      # Color
+      text.gsub!(/\[color=(.*?)\](.*?)\[\/color\]/i) { "<span style='color: #{$1}'>#{$2}</span>" }
+
+      # Size
+      text.gsub!(/\[size=(.*?)\](.*?)\[\/size\]/i) { "<span style='font-size: #{$1}'>#{$2}</span>" }
+
       # Quote
-      # text.gsub!(/\[quote.*]/i, '<span class="bbqoute">')
-      # text.gsub!(/\[\/quote\]/i, '</span>')
-      text.gsub!(/\[quote.*]/i, 'quote:')
-      text.gsub!(/\[\/quote\]/i, '')
+      text.gsub!(/\[quote author=(.*?) link=(.*?) date=(.*?)\]/i) { bbquote(author: $1, date: $3) }
+      text.gsub!(/\[\/quote\]/i, '</div>')
 
       # Link
-      #text.scan(/(?<url>\[url=(.*?)\])(?<url_text>.*?)\[\/url\]/) {|m| puts m.first}
-      #text.match(/(?<url>\[url=(.*?)\])(?<url_text>.*?)\[\/url\]/)
-      #\[url=(.*?)\](.*?)\[\/url\]
       text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i) { "<a href='#{$1}'>#{$2}</a>" }
 
       text.html_safe
+    end
+
+    def bbquote(author:, date:)
+      date_time = DateTime.strptime(date, '%s') rescue ''
+      "<div class='bbqoute'><strong>#{author}</strong> #{date_time}: "
     end
   end
 end
