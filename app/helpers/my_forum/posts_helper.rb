@@ -37,8 +37,8 @@ module MyForum
     end
 
     def bbquote(author:, date:)
-      date_time = DateTime.strptime(date, '%s') rescue ''
-      "<div class='bbqoute'><strong>#{author}</strong> #{date_time}: "
+      date_time = time(DateTime.strptime(date, '%s')) rescue ''
+      "<div class='bbqoute'> <div class='quote_info'>#{author} #{t('my_forum.bbquote.wrote')} #{date_time}:</div> "
     end
   end
 end

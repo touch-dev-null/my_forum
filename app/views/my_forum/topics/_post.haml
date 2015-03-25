@@ -7,6 +7,6 @@
   .col-md-2
     = render 'user_info', post: post
   .col-md-10
-    .created_at= t('.sent', datetime: post.created_at)
+    .created_at= t('.sent', datetime: time(post.created_at))
     #post_container{ id: post.id }
       = format_post_text(post)

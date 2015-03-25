@@ -37,8 +37,16 @@
     }
 
     .bbqoute {
+
+      .quote_info {
+        font-weight: bold;
+        font-size: 11px;
+      }
+
+      margin-right: 10px;
       border: 1px solid gainsboro;
-      padding: 10px 20px 0 20px;
+      border-radius: 25px;
+      padding: 10px 20px 10px 20px;
     }
 
     .user-title {

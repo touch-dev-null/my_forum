@@ -6,4 +6,4 @@
 .row
   .col-md-12.user-posts-count= t('.user_posts_count', count: user_posts_count(user))
 .row
-  .col-md-12.user-reg-date= user.created_at
+  .col-md-12.user-reg-date= time(user.created_at)

@@ -2,6 +2,8 @@ ru:
   my_forum:
     create_new_pm: 'Написать личное сообщение'
     create_new_topic: 'Создать новую тему'
+    bbquote:
+      wrote: 'написал'
 
     admin:
       forums:
