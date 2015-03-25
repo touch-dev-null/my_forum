@@ -110,6 +110,12 @@ ru:
         login: 'Войти'
         register: 'Зарегестрироваться'
 
+
+  will_paginate:
+    previous_label: 'Назад'
+    next_label: 'Вперед'
+
+
   activerecord:
     errors:
       models:
