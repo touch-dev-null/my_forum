@@ -1,7 +1,7 @@
 module MyForum
   class Topic < ActiveRecord::Base
-    has_many  :posts, :counter_cache => true, dependent: :destroy
-    belongs_to  :forum, :counter_cache => true
+    has_many    :posts, counter_cache: true, dependent: :destroy
+    belongs_to  :forum, counter_cache: true
     belongs_to  :user
 
     def info
@@ -16,18 +16,19 @@ module MyForum
     end
 
     def unread?(current_user, last_post)
-      return true unless current_user
-
-      log = LogReadMark.where(user_id: current_user.id, topic_id: self.id, post_id: last_post.id).count
-      log >= 1 ? false : true
+      return false unless current_user
+      !LogReadMark.where(user_id: current_user.id, topic_id: self.id, post_id: last_post.id).present?
     end
 
-    def mark_as_read(current_user, last_topic)
+    def mark_as_read(current_user, last_post)
       return true unless current_user
 
       log = LogReadMark.find_or_create_by(user_id: current_user.id, topic_id: self.id)
-      log.post_id = last_topic.id
-      log.save
+
+      if last_post.id.to_i > log.post_id.to_i
+        log.post_id = last_post.id
+        log.save
+      end
     end
   end
 end
