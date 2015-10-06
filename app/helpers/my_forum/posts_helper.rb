@@ -10,15 +10,13 @@ module MyForum
       text.gsub!(/\[\/img\]/i, '" />')
 
       # Bold text
-      text.gsub!(/\[b\]/i,   '<strong>')
-      text.gsub!(/\[\/b\]/i, '</strong>')
+      text.gsub!(/(\[b\])(?<bold_text>.*)(\[\/b\])/i) { |match| "<strong>#{$1}</strong>" }
 
-      text.gsub!(/\[i\]/i,   '<i>')
-      text.gsub!(/\[\/i\]/i, '</i>')
+      # Italic
+      text.gsub!(/(\[i\])(?<italic_text>.*)(\[\/i\])/i) { |match| "<i>#{$1}</i>" }
 
       # Cut
-      text.gsub!(/\[cut\]/i,   '<pre>')
-      text.gsub!(/\[\/cut\]/i, '</pre>')
+      text.gsub!(/(\[cut\])(?<cut_text>.*)(\[\/cut\])/i) { |match| "<pre>#{$1}</pre>" }
 
       # Color
       text.gsub!(/\[color=(.*?)\](.*?)\[\/color\]/i) { "<span style='color: #{$1}'>#{$2}</span>" }
@@ -29,6 +27,7 @@ module MyForum
       # Quote
       text.gsub!(/\[quote author=(.*?) link=(.*?) date=(.*?)\]/i) { bbquote(author: $1, date: $3) }
       text.gsub!(/\[\/quote\]/i, '</div>')
+      text.gsub!(/\[quote(.*)\]/i, "<div class='bbqoute'>")
 
       # Link
       text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i) { "<a href='#{$1}'>#{$2}</a>" }
