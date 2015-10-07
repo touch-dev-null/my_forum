@@ -7,17 +7,18 @@ class CreateMyForumUsers < ActiveRecord::Migration
       t.string  :real_name
       t.integer :gender
       t.date    :birthdate
-      t.string  :signature
+      t.text    :signature
       t.string  :avatar
       t.string  :location
       t.string  :user_ip
       t.text    :additional_info
       t.string  :email
       t.integer :posts_count
-      t.boolean :is_admin, default: false
-      t.boolean :is_moderator, default: false
-      t.boolean :is_deleted, default: false
-      t.boolean :permanently_banned, default: false
+      t.boolean :activated,           default: false
+      t.boolean :is_admin,            default: false
+      t.boolean :is_moderator,        default: false
+      t.boolean :is_deleted,          default: false
+      t.boolean :permanently_banned,  default: false
       t.timestamps null: false
       t.timestamp :last_logged_in
     end

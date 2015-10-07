@@ -4,7 +4,7 @@ class CreateMyForumPosts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :topic_id
       t.integer :forum_id
-      t.text    :text
+      t.text    :text,    :limit => 4294967295
       t.timestamps null: false
     end
   end
