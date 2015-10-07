@@ -20,7 +20,7 @@
         - @forum_topics.each do |topic|
           .row.topic-row
             .col-md-7.col-sm-7= render 'topic_subject', topic: topic, forum: @forum
-            .col-md-1.col-sm-1= topic.posts.first.user.login
+            .col-md-1.col-sm-1= topic.posts.first.user.login rescue '-'
             .col-md-1.col-sm-1= topic.posts_count
             .col-md-1.col-sm-1= topic.views.to_i
             .col-md-2.col-sm-2.info= topic_last_post_info(topic)

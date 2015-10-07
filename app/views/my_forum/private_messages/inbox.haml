@@ -19,6 +19,8 @@
             - @private_messages.each do |message|
               %tr
                 - html_class = 'unread' if message.unread?
-                %td=link_to message.created_at, private_message_url(message), class: html_class
+                %td=link_to message.created_at.strftime('%d-%b-%y %H:%M'), private_message_url(message), class: html_class
                 %td=link_to message.sender_login, private_message_url(message), class: html_class
                 %td=link_to message.subject, private_message_url(message), class: html_class
+
+      = will_paginate @private_messages

@@ -11,5 +11,5 @@
     = link_to topic.name.html_safe, forum_topic_path(forum, topic)
 .row
   .col-md-12.topic_description
-    =topic.description.html_safe
-    =# t('.author', author: topic.owner.login)
+    =# topic.description.html_safe
+    = t('.author', author: topic.owner.login)
