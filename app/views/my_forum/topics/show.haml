@@ -14,7 +14,8 @@
             - @topic_posts.each do |post|
               = render 'post', post: post
 
-        = will_paginate @topic_posts
+        .row
+          = will_paginate @topic_posts
 
       - if can_quick_answer?(@topic)
         #quick_answer

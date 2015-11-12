@@ -3,6 +3,7 @@ module MyForum
     require 'digest'
 
     has_many :posts, class_name: 'MyForum::Post'
+    has_many :attachments
     has_many :user_roles
     has_many :roles, through: :user_roles
     has_many :user_group_links

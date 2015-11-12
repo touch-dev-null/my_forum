@@ -27,6 +27,9 @@ module MyForum
 
       topic.save
       post.save
+
+      topic.mark_as_read(current_user, post)
+
       redirect_to forum_path(@forum)
     end
 

@@ -8,6 +8,8 @@ module MyForum
 
     # Display user avatar
     def user_avatar(user)
+      return image_tag(user.avatar, class: 'user-avatar') unless user.avatar.blank?
+
       image_tag('blank_avatar.png', class: 'user-avatar')
     end
 

@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require bootstrap
+//= jquery.selection.js
 //= require_tree .

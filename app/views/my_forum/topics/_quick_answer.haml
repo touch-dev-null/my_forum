@@ -1,8 +1,86 @@
 .row
   .col-md-10.col-md-offset-1
+    .text-editor-buttons{ data: { apply_to: 'quick_answer_textarea' } }
+      %div.btn-group
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-bold' }
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-italic' }
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-strikethrough' }
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-underline' }
+
+      -# %div.btn-group
+      -#   =link_to '#', class: 'btn btn-default btn-sm' do
+      -#     %i{ class: 'fa fa-align-left' }
+      -#   =link_to '#', class: 'btn btn-default btn-sm' do
+      -#     %i{ class: 'fa fa-align-center' }
+      -#   =link_to '#', class: 'btn btn-default btn-sm' do
+      -#     %i{ class: 'fa fa-align-right' }
+      -#   =link_to '#', class: 'btn btn-default btn-sm' do
+      -#     %i{ class: 'fa fa-align-justify' }
+
+      %div.btn-group
+        =link_to '#', class: 'btn btn-default btn-sm', data: { toggle: 'modal' } do
+          %i{ class: 'fa fa-camera-retro' }
+
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-video-camera' }
+        =link_to '#', class: 'btn btn-default btn-sm' do
+          %i{ class: 'fa fa-link' }
+
+      %div.btn-group.smiles
+        - smiles = %w(acute aggressive beee blum2 blush2 cray dirol download i-m_so_happy ireful2)
+        - smiles.each do |smile_file|
+          =link_to '#', class: 'btn btn-default btn-sm' do
+            %img{ src: asset_path("my_forum/smiles/#{smile_file}.gif"), class: 'smile' }
+
     = form_for @new_post, url: forum_topic_posts_path(forum, topic), role: 'form' do |form|
-      .form-group= form.text_area :text, class: 'form-control'
+      .form-group= form.text_area :text, class: 'form-control quick-answer', id: 'quick_answer_textarea'
 
       .pull-right
         = form.submit t('.quick_answer'), class: 'btn btn-primary'
-        = link_to t('.advanced_answer'), '#', class: 'btn btn-primary'
+        =# link_to t('.advanced_answer'), '#', class: 'btn btn-primary'
+
+
+#add_photo.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          %span{ aria_hidden: "true" }
+            &times;
+        %h4.modal-title
+          = t('.add_new_photo')
+      .modal-body
+        = form_for MyForum::Attachment.new, url: attachments_path, multipart: true, remote: true do |f|
+          = f.file_field :file
+
+        #loaded-content
+
+        :coffee
+          $('#attachment_file').change ->
+            file_data = $('#attachment_file').prop('files')[0]
+            form_data = new FormData()
+            form_data.append('file', file_data)
+
+            $.ajax({
+              url: "#{attachments_path}"
+              dataType: 'html'
+              cache: false
+              contentType: false
+              processData: false
+              data: form_data
+              type: 'post',
+              success: (data, textStatus, jqXHR) ->
+                response = $.parseJSON(data)
+                $('#quick_answer_textarea').append('[attachment=' + response.attachment_id + ']')
+            })
+
+
+      .modal-footer
+        %button.btn.btn-default{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          Close
+        %button.btn.btn-primary{ type: 'button' }
+          Save changes

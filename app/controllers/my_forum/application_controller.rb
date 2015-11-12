@@ -3,6 +3,8 @@ module MyForum
 
     before_filter :user_activity
 
+    helper_method :attachment_img_path
+
     def authenticate_user!
       redirect_to admin_signin_path unless current_user
     end
@@ -51,6 +53,11 @@ module MyForum
                              end
 
       redirect_to root_path if (category_user_groups.map(&:name) & current_user_groups).blank?
+    end
+
+    def attachment_img_path(attachment_id)
+      attachment = Attachment.find_by_id(attachment_id.to_i)
+      File.join(Attachment::UPLOAD_PATH, attachment.user_id.to_s, attachment.file_name)
     end
   end
 end

@@ -6,7 +6,7 @@ module MyForum
     before_filter :only_for_registered_users
 
     def index
-      @private_messages = PrivateMessage.inbox_for(current_user)
+      @private_messages = PrivateMessage.inbox_for(current_user).paginate(per_page: 16, page: params[:page])
       render :inbox
     end
 

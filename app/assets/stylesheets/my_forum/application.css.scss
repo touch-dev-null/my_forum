@@ -16,6 +16,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 .buttons_for_new_topic {
   margin-top: 10px;
@@ -50,4 +52,14 @@
     }
   }
 
+}
+.text-editor-buttons {
+  margin-bottom: -1px;
+
+  .btn-group.smiles {
+    img {
+      max-width: 16px;
+      height: 16px;
+    }
+  }
 }

@@ -14,6 +14,11 @@ module MyForum
         "<iframe width='560' height='315' src='https://www.youtube.com/embed/#{$~[:video_code]}' frameborder='0' allowfullscreen></iframe>"
       end
 
+      # Attachments
+      text.gsub!(/\[attachment=([0-9]+)\]/i) do |match|
+        "<img src='#{attachment_img_path($1)}' />"
+      end
+
       # Bold text
       text.gsub!(/(\[b\])(?<bold_text>.*)(\[\/b\])/i) { |match| "<strong>#{$1}</strong>" }
 
