@@ -12,13 +12,17 @@ module MyForum
 
       process_attachments(post)
 
-      redirect_to forum_topic_path(@forum, @topic)
+      last_page = @topic.posts.count / Post::PER_PAGE
+      last_page = 1 if last_page == 0
+      redirect_to forum_topic_path(@forum, @topic, page: last_page)
     end
 
     private
 
     def process_attachments(post)
-      post_params.to_s.match(/\[attachment=([0-9]+)\]/i).captures.map(&:to_i).each do |attachment_id|
+      return unless matches = post_params.to_s.match(/\[attachment=([0-9]+)\]/i)
+
+      matches.captures.map(&:to_i).each do |attachment_id|
         attachment = Attachment.where(id: attachment_id).first
         attachment.update(post: post) if attachment and post.user == attachment.user
       end

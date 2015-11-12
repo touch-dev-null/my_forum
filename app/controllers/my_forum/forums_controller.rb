@@ -6,7 +6,7 @@ module MyForum
 
     def show
       check_access_permissions(@forum)
-      @forum_topics = @forum.topics_with_latest_post_info(page: params[:page], per_page: 30)
+      @forum_topics = @forum.topics_with_latest_post_info(page: params[:page], per_page: Post::PER_PAGE)
     end
 
     def unread_topics
