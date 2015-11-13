@@ -1,8 +1,12 @@
-.row.post-header
-  .col-md-12.post_from_user_login
+- post_counter += 1
+
+.row.post-header{ id: "post_number_#{post_counter}"}
+  .col-md-10.post_from_user_login
     - user_login = post.user.try(:login)
     = online_user_marker(user_login)
     = user_login
+  .col-md-1.post_number.pull-right
+    =link_to t('.number', post_number: post_counter), forum_topic_path(@forum, post.topic, show_post: post_counter)
 .row
   .col-md-2
     = render 'user_info', post: post

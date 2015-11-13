@@ -63,6 +63,7 @@ ru:
         advanced_answer: 'Расширенный ответ'
       post:
         sent: "Отправленно: %{datetime}"
+        number: "Сообщение #%{post_number}"
 
     users:
       signin:

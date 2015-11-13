@@ -24,6 +24,11 @@
       line-height: 36px;
       margin: 0;
       background-color: #4e61a8;
+
+      .post_number a {
+        color: #fff;
+        font-size: 9px;
+      }
     }
 
     .created_at {

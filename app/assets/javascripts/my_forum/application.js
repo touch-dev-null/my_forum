@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= jquery.selection.js
+//= jquery.scrollTo.min.js
 //= require_tree .

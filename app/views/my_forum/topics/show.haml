@@ -11,8 +11,7 @@
             =t('.messages_in_topic', count: @topic.posts.count)
         .row.post-list-container
           .box
-            - @topic_posts.each do |post|
-              = render 'post', post: post
+            = render partial: 'post', collection: @topic_posts
 
         .row
           = will_paginate @topic_posts
@@ -20,3 +19,11 @@
       - if can_quick_answer?(@topic)
         #quick_answer
           = render 'quick_answer', forum: @forum, topic: @topic
+
+:coffee
+  $(document).on 'ready page:load', ->
+    container = $('body')
+    scroll_to = $('post_number_' + "#{params[:show_post]}")
+    scroll_to = 'post_number_' + "#{params[:show_post]}"
+
+    $('body').scrollTo(scroll_to);
