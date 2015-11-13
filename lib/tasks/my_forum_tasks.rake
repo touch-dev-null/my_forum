@@ -2,7 +2,7 @@ namespace :my_forum do
   namespace :import do
     namespace :smf do
 
-      $connection = Mysql2::Client.new Rails.configuration.database_configuration['smf_import']
+      $connection = Rails.env.test? ? SQLite3::Database.new('test.db') : Mysql2::Client.new(Rails.configuration.database_configuration['smf_import'])
 
       desc "Import Boards"
       task boards: :environment do

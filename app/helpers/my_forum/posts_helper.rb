@@ -16,7 +16,7 @@ module MyForum
 
       # Attachments
       text.gsub!(/\[attachment=([0-9]+)\]/i) do |match|
-        "<img src='#{attachment_img_path($1)}' />"
+        "<p> <img class='post_attachment' src='#{attachment_img_path($1)}' /> </p>"
       end
 
       # Bold text

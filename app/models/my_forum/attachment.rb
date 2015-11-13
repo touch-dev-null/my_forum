@@ -4,5 +4,6 @@ module MyForum
     belongs_to :post, class_name: 'MyForum::Post'
 
     UPLOAD_PATH = File.join(Rails.public_path, 'uploads', 'attachments')
+    URL  = File.join('/uploads', 'attachments')
   end
 end

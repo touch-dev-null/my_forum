@@ -2,7 +2,7 @@ module MyForum
   class Engine < ::Rails::Engine
     isolate_namespace MyForum
 
-    require "jquery-rails"
+    require 'jquery-rails'
     require 'bootstrap-sass'
 
     config.generators do |g|

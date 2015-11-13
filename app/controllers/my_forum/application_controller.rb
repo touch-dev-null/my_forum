@@ -57,7 +57,7 @@ module MyForum
 
     def attachment_img_path(attachment_id)
       attachment = Attachment.find_by_id(attachment_id.to_i)
-      File.join(Attachment::UPLOAD_PATH, attachment.user_id.to_s, attachment.file_name)
+      File.join(Attachment::URL, attachment.user_id.to_s, attachment.file_name)
     end
   end
 end
