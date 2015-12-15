@@ -17,6 +17,8 @@ module MyForum
 
     def unread?(current_user, last_post)
       return false unless current_user
+      return false if current_user.created_at > last_post.created_at
+
       !LogReadMark.where(user_id: current_user.id, topic_id: self.id, post_id: last_post.id).present?
     end
 

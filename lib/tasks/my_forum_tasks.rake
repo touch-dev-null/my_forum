@@ -18,9 +18,13 @@ namespace :my_forum do
           INNER JOIN `smf_categories` ON `smf_boards`.`id_cat` = `smf_categories`.`id_cat`
         SQL
 
+        user_groups = UserGroup.all
+
         result = $connection.query sql
         result.each do |row|
           category = MyForum::Category.find_or_create_by(name: row['category_name'])
+          category.user_groups << user_groups if user_groups.any?
+
           category.forums.create(name: row['board_name'], description: row['board_description'])
         end
       end
@@ -28,6 +32,8 @@ namespace :my_forum do
       desc "Import Users"
       task users: :environment do
         MyForum::User.destroy_all
+
+        user_group = UserGroup.where(name: 'Member').first
 
         sql = "SELECT member_name, date_registered, real_name, email_address, personal_text, birthdate, website_title, website_url, signature, avatar, is_activated FROM smf_members;"
         result = $connection.query sql
@@ -48,6 +54,8 @@ namespace :my_forum do
                 website_url:    row['website_url'],
                 is_activated:   row['is_activated']
             })
+
+            user.user_groups << user_group if user_group
           rescue => e
             print e
           end

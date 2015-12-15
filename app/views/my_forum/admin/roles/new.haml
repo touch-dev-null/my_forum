@@ -7,15 +7,15 @@
   .row
     = f.text_field :color
 
-  .row
-    admin access
-    .btn-group{ 'data-toggle' => "buttons" }
-      =f.label :admin_access, class: 'btn btn-success btn-sm active' do
-        = f.radio_button :admin_access, true
-        yes
-      =f.label :admin_access, class: 'btn btn-danger btn-sm' do
-        = f.radio_button :admin_access, false
-        &nbsp;no&nbsp;
+  -# .row
+  -#   admin access
+  -#   .btn-group{ 'data-toggle' => "buttons" }
+  -#     =f.label :admin_access, class: 'btn btn-success btn-sm active' do
+  -#       = f.radio_button :admin_access, true
+  -#       yes
+  -#     =f.label :admin_access, class: 'btn btn-danger btn-sm' do
+  -#       = f.radio_button :admin_access, false
+  -#       &nbsp;no&nbsp;
 
 
 

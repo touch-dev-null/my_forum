@@ -27,6 +27,8 @@ module MyForum
     private
 
     def encrypt_password
+      return unless password_changed?
+
       self.salt = make_salt unless valid_password?(password)
       self.password = encrypt(password)
     end

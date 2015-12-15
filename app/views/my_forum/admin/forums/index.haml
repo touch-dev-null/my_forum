@@ -8,18 +8,28 @@
 .container-fluid
   - @categories.each do |category|
     .row.category_box
-      .col-md-12.category_name
+      .col-md-10.category_name
         =category.name
-
+      .col-md-2.category_name
         .pull-right.btn-group.btn-group-sm{ rel: 'group' }
           = link_to t('.create_forum'), new_admin_category_forum_path(category), class: 'btn btn-default'
-          .btn-group.btn-group-sm{ rel: 'group' }
-            %button{ class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown' } }
-              Options
-              .caret
-            %ul{ class: 'dropdown-menu', role: 'menu' }
-              %li= link_to t('.edit'), edit_admin_category_path(category)
-              %li= link_to t('.delete'), '#'
+        .pull-right.btn-group.btn-group-sm{ rel: 'group' }
+          = link_to t('.edit'), edit_admin_category_path(category), class: 'btn btn-default'
+
+        -# .btn-group.btn-group-sm
+        -#   %button{ class: 'btn btn-default dropdown-toggle', data: { toggle: 'dropdown', aria_haspopup: true, aria_expanded: false } }
+        -#     Options
+        -#     %span.caret
+        -#   %ul{ class: 'dropdown-menu'}
+        -#     %li= link_to t('.edit'), edit_admin_category_path(category)
+        -#     %li= link_to t('.delete'), '#'
+
+
+
+
+
+
+
 
 
       .row.category_forums

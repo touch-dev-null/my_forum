@@ -17,7 +17,7 @@ module MyForum
     end
 
     def has_unread_posts?(current_user)
-      latest_post_ids = self.topics.pluck(:latest_post_id)
+      latest_post_ids = self.topics.where('updated_at >= ?', current_user.created_at).pluck(:latest_post_id)
       read_log = LogReadMark.where("user_id = ? AND post_id IN (?)", current_user.id, latest_post_ids).count
 
       latest_post_ids.length != read_log
