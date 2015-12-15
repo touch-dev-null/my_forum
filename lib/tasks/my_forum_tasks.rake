@@ -2,7 +2,12 @@ namespace :my_forum do
   namespace :import do
     namespace :smf do
 
-      $connection = Rails.env.test? ? SQLite3::Database.new('test.db') : Mysql2::Client.new(Rails.configuration.database_configuration['smf_import'])
+      if Rails.env.test?
+        require 'sqlite3'
+        $connection = SQLite3::Database.new('test.db')
+      else
+        $connection = Mysql2::Client.new(Rails.configuration.database_configuration['smf_import'])
+      end
 
       desc "Import Boards"
       task boards: :environment do
@@ -18,7 +23,7 @@ namespace :my_forum do
           INNER JOIN `smf_categories` ON `smf_boards`.`id_cat` = `smf_categories`.`id_cat`
         SQL
 
-        user_groups = UserGroup.all
+        user_groups = MyForum::UserGroup.all
 
         result = $connection.query sql
         result.each do |row|
@@ -33,7 +38,7 @@ namespace :my_forum do
       task users: :environment do
         MyForum::User.destroy_all
 
-        user_group = UserGroup.where(name: 'Member').first
+        user_group = MyForum::UserGroup.where(name: 'Member').first
 
         sql = "SELECT member_name, date_registered, real_name, email_address, personal_text, birthdate, website_title, website_url, signature, avatar, is_activated FROM smf_members;"
         result = $connection.query sql

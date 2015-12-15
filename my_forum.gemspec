@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'will_paginate', '~> 3.0.6'
   s.add_dependency 'font-awesome-sass'
+  s.add_dependency 'sqlite3'
 end

@@ -10,5 +10,8 @@ gem 'haml'
 gem 'rspec'
 gem 'rspec-rails', '~> 3.0'
 gem 'will_paginate', '~> 3.0'
-gem 'sqlite3'
 gem 'font-awesome-sass'
+
+group :test do
+  gem 'sqlite3'
+end
