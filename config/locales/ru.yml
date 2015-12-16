@@ -1,5 +1,8 @@
 ru:
+  today: "Сегодня"
   my_forum:
+    today: "Сегодня в %{hhmm}"
+    yerstaday: "Вчера в %{hhmm}"
     create_new_pm: 'Написать личное сообщение'
     create_new_topic: 'Создать новую тему'
     bbquote:
@@ -36,6 +39,10 @@ ru:
         in_forum: 'в '
         users_online: 'Сейчас на форуме: '
         today_online: 'Сегодня на форуме были: '
+        recent_topics: 'Последние сообщения'
+        topic_name: 'Тема:'
+        last_message_from: 'Последнее сообщение от:'
+        date: 'Дата:'
 
     forums:
       show:

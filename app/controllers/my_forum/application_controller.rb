@@ -30,6 +30,19 @@ module MyForum
     end
     helper_method :new_pm_count
 
+    def forum_time(time)
+      local_time = time.localtime
+
+      if local_time.to_date == Time.now.to_date
+        return t('my_forum.today', hhmm: local_time.strftime('%H:%M'))
+      elsif local_time.to_date == (Time.now - 1.day).to_date
+        return t('my_forum.yerstaday ', hhmm: local_time.strftime('%H:%M'))
+      end
+
+      local_time.strftime('%Y-%m-%d %H:%M')
+    end
+    helper_method :forum_time
+
     private
 
     def user_activity

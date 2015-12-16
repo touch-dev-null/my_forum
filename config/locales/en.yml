@@ -1,5 +1,8 @@
 en:
   my_forum:
+    today: "Today '%{hhmm}'"
+    yerstaday: "Yerstaday '%{hhmm}'"
+
     admin:
       forums:
         index:

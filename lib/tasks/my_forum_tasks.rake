@@ -1,4 +1,15 @@
 namespace :my_forum do
+  namespace :service do
+    desc 'Recalculate category posts count'
+    task recalculate_posts_count: :environment do
+      MyForum::Forum.all.each do |forum|
+        topic_ids = MyForum::Topic.where(forum_id: forum.id).pluck(:id)
+        count     = MyForum::Post.where(topic_id: topic_ids).count
+        forum.update(posts_count: count)
+      end
+    end
+  end
+
   namespace :import do
     namespace :smf do
 

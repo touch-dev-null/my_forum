@@ -35,8 +35,9 @@ module MyForum
       content_tag :div, obj.errors.full_messages.to_sentence, class: 'errors_for'
     end
 
+    # TODO deprecate!
     def time(datetime)
-      datetime.strftime('%T %F')
+      forum_time(datetime)
     end
 
   end
