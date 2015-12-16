@@ -10,7 +10,7 @@ module MyForum
       text.gsub!(/\[\/img\]/i, '" />')
 
       # Youtube
-      text.gsub!(/(http|www)(.*youtu*.+\/)(watch\?v=|embed\/watch\?|\/)(?<video_code>[a-z1-9]+)/i) do |match|
+      text.gsub!(/(http|www)(.*youtu*.+\/)(watch\?(.+)?v=|embed\/watch\?|\/)(?<video_code>[a-z1-9]+)/i) do |match|
         "<iframe width='560' height='315' src='https://www.youtube.com/embed/#{$~[:video_code]}' frameborder='0' allowfullscreen></iframe>"
       end
 

@@ -2,7 +2,7 @@ ru:
   today: "Сегодня"
   my_forum:
     today: "Сегодня в %{hhmm}"
-    yerstaday: "Вчера в %{hhmm}"
+    yesterday: "Вчера в %{hhmm}"
     create_new_pm: 'Написать личное сообщение'
     create_new_topic: 'Создать новую тему'
     bbquote:
