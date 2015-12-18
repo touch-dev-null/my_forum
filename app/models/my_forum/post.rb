@@ -5,6 +5,8 @@ module MyForum
 
     after_create :update_topic_latest_post
 
+    default_scope { where(is_deleted: false) }
+
     PER_PAGE = 15
 
     private

@@ -1,4 +1,22 @@
 ready = ->
+  # Quote button
+  $('.quote-post').click (event) ->
+    quoute_post_id = $(event.target).data('post-id')
+
+    $.ajax
+      url: '/post/' + quoute_post_id
+      type: "GET"
+      dataType: "json"
+      success: (response) ->
+        quote  = $('#quick_answer_textarea').val()
+        quote += '\n[quote author=' + response.author+ ']'
+        quote += response.text
+        quote += '[/quote]\n\n'
+
+        $('#quick_answer_textarea').val(quote)
+        $('body').scrollTo($('#quick_answer_textarea'))
+
+
   # BBCode editor
   $('.text-editor-buttons').click (event) ->
     return false if !$(event.target).is('a') and !$(event.target).is('i')

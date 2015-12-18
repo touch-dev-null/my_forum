@@ -71,6 +71,8 @@ ru:
       post:
         sent: "Отправленно: %{datetime}"
         number: "Сообщение #%{post_number}"
+        quote: 'Цитировать'
+        delete: 'удалить'
 
     users:
       signin:

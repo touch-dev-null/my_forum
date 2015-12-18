@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    my_forum (0.0.1.beta17)
+    my_forum (0.0.1.beta21)
       bootstrap-sass
       coffee-rails
       font-awesome-sass

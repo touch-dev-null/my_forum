@@ -5,7 +5,12 @@
     - user_login = post.user.try(:login)
     = online_user_marker(user_login)
     = user_login
-  .col-md-1.post_number.pull-right
+  .col-md-2.post_number.text-right
+    - # TODO optimize condition!
+    - if current_user and current_user.is_admin? and post.topic.posts.first != post
+      =link_to t('.delete'), forum_topic_post_path(@forum, post.topic, post), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: "Are you sure?" }
+    %button.btn.btn-xs.btn-warning.quote-post{ data: { post_id: post.id } }
+      =t('.quote')
     =link_to t('.number', post_number: post_counter), forum_topic_path(@forum, post.topic, show_post: post_counter)
 .row
   .col-md-2

@@ -20,13 +20,13 @@ module MyForum
       end
 
       # Bold text
-      text.gsub!(/(\[b\])(?<bold_text>.*)(\[\/b\])/i) { |match| "<strong>#{$1}</strong>" }
+      text.gsub!(/(\[b\](?<bold_text>.+?)\[\/b\])/i) { |match| "<strong>#{$1}</strong>" }
 
       # Italic
-      text.gsub!(/(\[i\])(?<italic_text>.*)(\[\/i\])/i) { |match| "<i>#{$1}</i>" }
+      text.gsub!(/(\[i\])(?<italic_text>.*?)(\[\/i\])/i) { |match| "<i>#{$1}</i>" }
 
       # Cut
-      text.gsub!(/(\[cut\])(?<cut_text>.*)(\[\/cut\])/i) { |match| "<pre>#{$1}</pre>" }
+      text.gsub!(/(\[cut\])(?<cut_text>.*?)(\[\/cut\])/i) { |match| "<pre>#{$1}</pre>" }
 
       # Color
       text.gsub!(/\[color=(.*?)\](.*?)\[\/color\]/i) { "<span style='color: #{$1}'>#{$2}</span>" }
@@ -35,9 +35,15 @@ module MyForum
       text.gsub!(/\[size=(.*?)\](.*?)\[\/size\]/i) { "<span style='font-size: #{$1}'>#{$2}</span>" }
 
       # Quote
-      text.gsub!(/\[quote author=(.*?) link=(.*?) date=(.*?)\]/i) { bbquote(author: $1, date: $3) }
-      text.gsub!(/\[\/quote\]/i, '</div>')
-      text.gsub!(/\[quote(.*)\]/i, "<div class='bbqoute'>")
+      #text.gsub!(/\[quote author=(.*?) link=(.*?) date=(.*?)\]/i) { bbquote(author: $1, date: $3) }
+      #text.gsub!(/\[\/quote\]/i, '</div>')
+      #text.gsub!(/\[quote(.*)\]/i, "<div class='bbqoute'>")
+      text.gsub!(/(?<open>\[quote author=(?<autor>(.*?)) (.+)\](?<text>(.+))(?<close>\[\/quote\]))/i) do |match|
+        # "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')} #{Time.now}:</div> #{$~[:text]} </div>"
+        "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')}:</div> #{$~[:text]} </div>"
+      end
+
+
 
       # Link
       text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i) { "<a href='#{$1}'>#{$2}</a>" }

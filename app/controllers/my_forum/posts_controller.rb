@@ -2,19 +2,34 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class PostsController < ApplicationController
-    before_filter :find_topic
-    before_filter :find_forum
+    before_filter :find_topic, except: [:show]
+    before_filter :find_forum, except: [:show]
 
     def create
-      post = @topic.posts.build(post_params)
-      post.user = current_user
-      post.save
+      unless params[:post].fetch(:text).blank?
+        post = @topic.posts.build(post_params)
+        post.user = current_user
+        post.save
 
-      process_attachments(post)
+        process_attachments(post)
+      end
 
       last_page = @topic.posts.count / Post::PER_PAGE
       last_page = 1 if last_page == 0
       redirect_to forum_topic_path(@forum, @topic, page: last_page)
+    end
+
+    def destroy
+      post = Post.find(params[:id])
+      post.update(is_deleted: true)
+      redirect_to forum_topic_path(post.topic.forum, post.topic)
+    end
+
+    def show
+      post = Post.find(params[:id])
+      respond_to do |format|
+        format.js { render json: { text: post.text, author: post.user.login }.as_json, status: :ok }
+      end
     end
 
     private
