@@ -1,5 +1,6 @@
 .col-md-6
   = "#{t('.welcome_to_forum')}, #{current_user.login}"
+  = current_user.id if Rails.env.development?
 
 .col-md-6
   .btn-group.pull-right{ role: 'group' }

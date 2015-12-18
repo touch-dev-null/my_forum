@@ -30,6 +30,7 @@ MyForum::Engine.routes.draw do
     root 'dashboard#index'
 
     match 'forums', to: 'forums#index', via: [:get]
+    match 'mail_list', to: 'mail#index', via: [:get, :post]
 
     resources :users
     resources :roles

@@ -1,0 +1,9 @@
+%br
+= form_tag admin_mail_list_path, remote: true do
+  = select_tag :emails, options_for_select(@users), multiple: true
+  %br
+  = text_field_tag :subject
+  %br
+  = text_area_tag :message
+  %br
+  = submit_tag

@@ -10,5 +10,10 @@ module MyForum
       @user.save
       mail(to: @user.email, subject: 'vaz.od.ua - New password')
     end
+
+    def custom_email(email:, subject:, message:)
+      @message = message
+      mail(to: email, subject: subject)
+    end
   end
 end

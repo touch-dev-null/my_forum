@@ -13,7 +13,7 @@
               .col-md-2.col-sm-2.forum-info= forum_stat(forum)
               .col-md-3.col-sm-3.forum-last-message-info= forum_last_message_info(forum)
 
-  - if @recent_topics
+  - if @recent_posts
     #recent_topics
       %table.table
         %caption= t('.recent_topics')
@@ -23,11 +23,11 @@
             %th= t('.last_message_from')
             %th= t('.date')
         %tbody
-          -@recent_topics.each do |topic|
+          -@recent_posts.each do |post|
             %tr
-              %td= link_to topic.name, forum_topic_path(topic.forum, topic)
-              %td= topic.posts.last.user.login
-              %td= forum_time(topic.updated_at)
+              %td= link_to post.topic_name, forum_topic_path(post.forum, post.topic_id)
+              %td= post.user.login
+              %td= forum_time(post.updated_at)
 
   #online_users.well
     = t('.users_online')
