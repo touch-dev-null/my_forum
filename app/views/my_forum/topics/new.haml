@@ -1,12 +1,38 @@
 %h2= t('.create_new_topic_in', topic_name: @forum.name)
 
+
+
 = form_for @topic, url: forum_topics_path, role: 'form' do |form|
   .form-group= form.text_field :name, class: 'name form-control', placeholder: t('.name')
   .form-group= form.text_field :description, class: 'description form-control', placeholder: t('.description')
 
   %br
 
-  = fields_for :post do |post_form|
-    .form-group= post_form.text_area :text, placeholder: t('.post_text'), class: 'form-control', rows: 10
+  .row
+    .col-md-12
+      .text-editor-buttons{ data: { apply_to: 'post_text' } }
+        %div.btn-group
+          =link_to '#', class: 'btn btn-default btn-sm' do
+            %i{ class: 'fa fa-bold' }
+          =link_to '#', class: 'btn btn-default btn-sm' do
+            %i{ class: 'fa fa-italic' }
+          =link_to '#', class: 'btn btn-default btn-sm' do
+            %i{ class: 'fa fa-strikethrough' }
+          =link_to '#', class: 'btn btn-default btn-sm' do
+            %i{ class: 'fa fa-underline' }
+
+        %div.btn-group
+          =link_to '#', class: 'btn btn-default btn-sm', data: { toggle: 'modal' } do
+            %i{ class: 'fa fa-camera-retro' }
+
+        %div.btn-group.smiles
+          - emoticons_list.each do |code, path|
+            =link_to '#', class: 'btn btn-default btn-sm smile-past' do
+              %img{ src: path, class: 'smile', data: { code: code } }
+
+      = fields_for :post do |post_form|
+        .form-group= post_form.text_area :text, placeholder: t('.post_text'), class: 'form-control', rows: 10
 
   = form.submit class: 'btn '
+
+  = render partial: 'my_forum/shared/upload_photo', locals: { textarea: 'post_text' }

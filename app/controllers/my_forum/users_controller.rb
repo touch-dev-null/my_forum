@@ -77,7 +77,22 @@ module MyForum
       end
     end
 
+    def avatar_update
+      if params[:user][:avatar]
+        avatar = upload_avatar(params[:user][:avatar])
+        current_user.update(avatar_url: File.join(Avatar::URL, current_user.id.to_s, avatar.file_name)) if avatar
+      elsif params[:user][:avatar_url]
+        current_user.update_columns(avatar_params)
+      end
+
+      redirect_to edit_user_path(current_user)
+    end
+
     private
+
+    def avatar_params
+      params.require(:user).permit(:avatar_url)
+    end
 
     def user_params
       params.require(:user).permit(:login, :email, :password)
@@ -94,6 +109,29 @@ module MyForum
       return unless new_password
       return unless current_user.valid_password?(current_password)
       current_user.update_attributes(password: new_password)
+    end
+
+    def upload_avatar(avatar_param)
+      return false unless Avatar::ALLOWED_FILE_EXTENSIONS.include? File.extname(avatar_param.original_filename)
+
+      current_avatar  = current_user.avatar
+      upload_path     = File.join(Avatar::UPLOAD_PATH, current_user.id.to_s)
+
+      # Create dir of not exists
+      FileUtils::mkdir_p upload_path
+
+      File.open(File.join(upload_path, avatar_param.original_filename), 'wb') do |file|
+        file.write(avatar_param.read)
+      end
+
+      new_avatar = Avatar.create(user_id: current_user.id, file_name: avatar_param.original_filename)
+
+      if current_avatar and new_avatar
+        FileUtils.rm File.join(upload_path, current_avatar.file_name) rescue nil
+        current_avatar.destroy
+      end
+
+      new_avatar
     end
 
   end

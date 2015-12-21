@@ -103,6 +103,10 @@ ru:
         email: 'Электронная почта'
         current_password: 'Текущий пароль'
         new_password: 'Новый пароль'
+        avatar: 'Аватар'
+        avatar_upload_description: 'Загрузите свой аватар или укажите ссылку'
+        update: 'Обновить'
+        update_avatar: 'Обновить аватар'
 
 
     private_messages:

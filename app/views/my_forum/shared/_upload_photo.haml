@@ -1,0 +1,44 @@
+#add_photo.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          %span{ aria_hidden: "true" }
+            &times;
+        %h4.modal-title
+          = t('.add_new_photo')
+      .modal-body
+        %p= t('my_forum.attachments.allowed_extensions', ext: upload_allowed_extensions.join(', '))
+        = form_for MyForum::Attachment.new, url: attachments_path, multipart: true, remote: true do |f|
+          = f.file_field 'file[]', multiple: true, id: 'attachment_files'
+
+        #loaded-content
+
+      .modal-footer
+        %button.btn.btn-default{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          Close
+
+      :coffee
+        $('#attachment_files').change ->
+          form_data = new FormData()
+
+          files_count = $('#attachment_files').prop('files').length
+          form_data.append('files[]', $('#attachment_files').prop('files')[c]) for c in [0...files_count]
+
+          $.ajax({
+            url: "#{attachments_path}"
+            dataType: 'html'
+            cache: false
+            contentType: false
+            processData: false
+            data: form_data
+            type: 'post',
+            success: (data, textStatus, jqXHR) ->
+              response = $.parseJSON(data)
+              bbcode_attachments = ''
+              bbcode_attachments += ('[attachment=' + id + '] \n') for id in response.attachments
+              $('##{textarea}').append(bbcode_attachments)
+              $('#loaded-content').html('#{t('my_forum.successfull_aploaded')}')
+              $('#add_photo').modal('hide')
+              $('#attachment_files').val('')
+          })

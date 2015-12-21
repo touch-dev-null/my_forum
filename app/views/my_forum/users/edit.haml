@@ -10,11 +10,18 @@
       .form-group= form.password_field :password, value: '', class: 'description form-control', placeholder: t('.current_password')
       .form-group= form.text_field :new_password, value: '', class: 'description form-control', placeholder: t('.new_password')
 
-      = form.submit class: 'btn btn-primary btn-sm'
+      = form.submit t('.update'), class: 'btn btn-primary btn-sm'
 
-  .col-md-4
+  .col-md-5.col-md-offset-1
     .row.col-sm-4
       .thumbnail
         = user_avatar(current_user)
-    .row.col-sm-4
-      upload
+    .row.col-sm-7.col-sm-offset-1
+      .row
+        %strong=t('.avatar')
+      = form_for current_user, url: user_avatar_update_path(current_user), role: 'form', multipart: true do |form|
+        .row
+          %p= t('.avatar_upload_description')
+        .row= form.file_field :avatar
+        .row= form.text_field :avatar_url, placeholder: 'http://...'
+        .row= form.submit t('.update_avatar'), class: 'btn btn-primary btn-sm submit_update_avatar'

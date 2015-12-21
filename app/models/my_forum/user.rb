@@ -11,6 +11,7 @@ module MyForum
 
     has_one :avatar
 
+    default_scope { where(is_deleted: false) }
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
     scope :today_visited, -> { where("updated_at > ?", Time.now.beginning_of_day) }
 

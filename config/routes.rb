@@ -15,6 +15,7 @@ MyForum::Engine.routes.draw do
   resources :attachments
 
   resources :users do
+    patch :avatar_update
     collection do
       get :autocomplete
     end
