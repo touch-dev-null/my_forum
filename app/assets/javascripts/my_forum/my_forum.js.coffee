@@ -19,15 +19,29 @@ ready = ->
 
   # BBCode editor
   $('.text-editor-buttons').click (event) ->
-    return false if !$(event.target).is('a') and !$(event.target).is('i')
-
     event.preventDefault()
 
     apply_to = $('.text-editor-buttons').data('apply-to')
     apply_to = $('#' + apply_to)
-    button = if $(event.target).is('a') then $(event.target).find('i') else $(event.target)
-    action = button.attr('class').replace('fa fa-', '');
 
+    # Smiles
+    if $(event.target).attr('class').search('smile') >= 0
+      smile_code = $(event.target).data('code') || $(event.target).find('[data-code]').data('code')
+
+      if smile_code
+        text = apply_to.val()
+        apply_to.val(text + smile_code + ' ')
+
+      return false
+
+
+    # Text formatting
+    return false if !$(event.target).is('a') and !$(event.target).is('i')
+
+    button = if $(event.target).is('a') then $(event.target).find('i') else $(event.target)
+    html_class = button.attr('class')
+
+    action = if html_class then html_class.replace('fa fa-', '') else ''
     text = apply_to.val()
 
     switch action
@@ -41,7 +55,6 @@ ready = ->
         bbcode = '[u] [/u]'
       when 'link', 'video-camera', 'camera-retro'
         $('#add_photo').modal()
-
       else
         bbcode = ''
         console.log 'Unknown tag'

@@ -1,6 +1,8 @@
 ru:
   today: "Сегодня"
   my_forum:
+    mailer:
+      new_pm_notification_subject: 'Уведомление о новом личном сообщении'
     today: "Сегодня в %{hhmm}"
     yesterday: "Вчера в %{hhmm}"
     create_new_pm: 'Написать личное сообщение'

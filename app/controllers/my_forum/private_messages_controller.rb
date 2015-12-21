@@ -42,12 +42,13 @@ module MyForum
         return
       end
 
-      @pm.recipient_id = recipient.id
+      @pm.recipient_id    = recipient.id
       @pm.recipient_login = recipient.login
-      @pm.sender_id = current_user_id
-      @pm.sender_login = current_user.login
+      @pm.sender_id       = current_user_id
+      @pm.sender_login    = current_user.login
       @pm.assign_attributes(pm_params)
-      @pm.save
+
+      UserMailer.pm_notification(recipient, current_user).deliver_now if @pm.save
 
       redirect_to action: :index
     end

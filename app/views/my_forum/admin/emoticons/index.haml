@@ -1,0 +1,15 @@
+- if @emoticons.blank?
+  =t('.no_emoticons')
+- else
+  %table.table
+    -@emoticons.each do |smile|
+      %tr
+        %td= smile.code
+        %td
+          %img{ src: emoticon_url_for(smile), class: 'smile' }
+        %td= smile.is_active
+        %td= link_to t('.edit'), edit_admin_emoticon_path(smile)
+        %td= link_to t('.delete'), admin_emoticon_path(smile), method: :delete, data: { confirm: "Are you sure?" }
+
+
+=link_to t('.add'), new_admin_emoticon_path

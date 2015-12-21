@@ -43,7 +43,10 @@ module MyForum
         "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')}:</div> #{$~[:text]} </div>"
       end
 
-
+      # Emoticons (smiles)
+      emoticons_list.each do |code, path|
+        text.gsub!(/#{Regexp.quote(code)}/) { "<img src='#{path}' class='smile' />" }
+      end
 
       # Link
       text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i) { "<a href='#{$1}'>#{$2}</a>" }

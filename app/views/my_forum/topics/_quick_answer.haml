@@ -25,16 +25,18 @@
         =link_to '#', class: 'btn btn-default btn-sm', data: { toggle: 'modal' } do
           %i{ class: 'fa fa-camera-retro' }
 
-        =link_to '#', class: 'btn btn-default btn-sm' do
-          %i{ class: 'fa fa-video-camera' }
-        =link_to '#', class: 'btn btn-default btn-sm' do
-          %i{ class: 'fa fa-link' }
+        -# =link_to '#', class: 'btn btn-default btn-sm' do
+        -#   %i{ class: 'fa fa-video-camera' }
+        -# =link_to '#', class: 'btn btn-default btn-sm' do
+        -#   %i{ class: 'fa fa-link' }
 
       %div.btn-group.smiles
-        - smiles = %w(acute aggressive beee blum2 blush2 cray dirol download i-m_so_happy ireful2)
-        - smiles.each do |smile_file|
+        - emoticons_list.each do |code, path|
           =link_to '#', class: 'btn btn-default btn-sm smile-past' do
-            %img{ src: asset_path("my_forum/smiles/#{smile_file}.gif"), class: 'smile' }
+            %img{ src: path, class: 'smile', data: { code: code } }
+
+
+
 
     = form_for @new_post, url: forum_topic_posts_path(forum, topic), role: 'form' do |form|
       .form-group= form.text_area :text, class: 'form-control quick-answer', id: 'quick_answer_textarea'
@@ -60,11 +62,6 @@
         #loaded-content
 
         :coffee
-          $('.smile-past').click ->
-            smile_icon_path = $(this).find('img').attr('src')
-            smile_icon_file = smile_icon_path.split('/').pop()
-            $('#quick_answer_textarea').append('::' + smile_icon_file.split('.')[0] + ':: ')
-
           $('#attachment_file').change ->
             file_data = $('#attachment_file').prop('files')[0]
             form_data = new FormData()

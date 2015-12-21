@@ -15,5 +15,10 @@ module MyForum
       @message = message
       mail(to: email, subject: subject)
     end
+
+    def pm_notification(user, sender)
+      @sender = sender
+      mail(to: user.email, subject: I18n.t('my_forum.mailer.new_pm_notification_subject'))
+    end
   end
 end

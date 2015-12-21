@@ -34,6 +34,7 @@ MyForum::Engine.routes.draw do
     match 'forums', to: 'forums#index', via: [:get]
     match 'mail_list', to: 'mail#index', via: [:get, :post]
 
+    resources :emoticons
     resources :users
     resources :roles
     resources :categories do

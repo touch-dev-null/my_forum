@@ -3,7 +3,7 @@ module MyForum
 
     before_filter :user_activity
 
-    helper_method :attachment_img_path
+    helper_method :attachment_img_path, :emoticons_list
 
     def authenticate_user!
       redirect_to admin_signin_path unless current_user
@@ -71,6 +71,10 @@ module MyForum
     def attachment_img_path(attachment_id)
       attachment = Attachment.find_by_id(attachment_id.to_i)
       File.join(Attachment::URL, attachment.user_id.to_s, attachment.file_name)
+    end
+
+    def emoticons_list
+      Emoticon.all.inject({}) {|hash, smile| hash.merge!(smile.code => File.join(Emoticon::URL, smile.file_name) ) }
     end
   end
 end

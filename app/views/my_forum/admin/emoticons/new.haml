@@ -1,0 +1,5 @@
+.row.col-sm-2
+  = form_for @emoticon, url: admin_emoticons_path, multipart: true, role: 'form' do |f|
+    .form-group= f.file_field :file_name, class: 'form-control'
+    .form-group= f.text_field :code, class: 'form-control'
+    = f.submit
