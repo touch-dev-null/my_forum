@@ -9,6 +9,8 @@ module MyForum
     has_many :user_group_links
     has_many :user_groups, through: :user_group_links
 
+    has_one :avatar
+
     scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
     scope :today_visited, -> { where("updated_at > ?", Time.now.beginning_of_day) }
 

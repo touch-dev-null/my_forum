@@ -18,7 +18,7 @@ module MyForum
     def new_private_messages_count_bage
       return unless current_user
       return if (count = new_pm_count).eql?(0)
-      content_tag(:span, count, class: 'badge')
+      content_tag(:span, count, class: 'new-pm badge')
     end
 
   end

@@ -1,12 +1,20 @@
 %h2= t('.edit_profile')
 
-.row.col-md-4
+.row
+  .col-md-4
 
-  = errors_for(current_user)
+    = errors_for(current_user)
 
-  = form_for current_user, url: user_path(current_user), role: 'form' do |form|
-    .form-group= form.text_field :email, class: 'name form-control', placeholder: t('.email')
-    .form-group= form.password_field :password, value: '', class: 'description form-control', placeholder: t('.current_password')
-    .form-group= form.text_field :new_password, value: '', class: 'description form-control', placeholder: t('.new_password')
+    = form_for current_user, url: user_path(current_user), role: 'form' do |form|
+      .form-group= form.text_field :email, class: 'name form-control', placeholder: t('.email')
+      .form-group= form.password_field :password, value: '', class: 'description form-control', placeholder: t('.current_password')
+      .form-group= form.text_field :new_password, value: '', class: 'description form-control', placeholder: t('.new_password')
 
-    = form.submit class: 'btn btn-primary btn-sm'
+      = form.submit class: 'btn btn-primary btn-sm'
+
+  .col-md-4
+    .row.col-sm-4
+      .thumbnail
+        = user_avatar(current_user)
+    .row.col-sm-4
+      upload

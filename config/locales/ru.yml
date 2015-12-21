@@ -7,6 +7,12 @@ ru:
     yesterday: "Вчера в %{hhmm}"
     create_new_pm: 'Написать личное сообщение'
     create_new_topic: 'Создать новую тему'
+    reply_for_pm: 'Ответить на сообщение'
+    successfull_aploaded: 'Файлы успешно загружены'
+
+    attachments:
+      allowed_extensions: "Разрешенные расширения файлов: %{ext}"
+
     bbquote:
       wrote: 'написал'
 

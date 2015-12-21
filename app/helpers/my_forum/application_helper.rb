@@ -40,5 +40,8 @@ module MyForum
       forum_time(datetime)
     end
 
+    def upload_allowed_extensions
+      Attachment::ALLOWED_FILE_EXTENSIONS
+    end
   end
 end

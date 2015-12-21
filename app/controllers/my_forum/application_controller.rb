@@ -31,7 +31,7 @@ module MyForum
     helper_method :new_pm_count
 
     def forum_time(time)
-      local_time = time.localtime
+      local_time = time
 
       if local_time.to_date == Time.now.to_date
         return t('my_forum.today', hhmm: local_time.strftime('%H:%M'))

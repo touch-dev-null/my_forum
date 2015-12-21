@@ -5,5 +5,7 @@ module MyForum
 
     UPLOAD_PATH = File.join(Rails.public_path, 'uploads', 'attachments')
     URL  = File.join('/uploads', 'attachments')
+
+    ALLOWED_FILE_EXTENSIONS = %w(.jpg .png .gif)
   end
 end

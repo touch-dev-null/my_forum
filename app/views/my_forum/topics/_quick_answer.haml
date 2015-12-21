@@ -56,16 +56,18 @@
         %h4.modal-title
           = t('.add_new_photo')
       .modal-body
+        %p= t('my_forum.attachments.allowed_extensions', ext: upload_allowed_extensions.join(', '))
         = form_for MyForum::Attachment.new, url: attachments_path, multipart: true, remote: true do |f|
-          = f.file_field :file
+          = f.file_field 'file[]', multiple: true, id: 'attachment_files'
 
         #loaded-content
 
         :coffee
-          $('#attachment_file').change ->
-            file_data = $('#attachment_file').prop('files')[0]
+          $('#attachment_files').change ->
             form_data = new FormData()
-            form_data.append('file', file_data)
+
+            files_count = $('#attachment_files').prop('files').length
+            form_data.append('files[]', $('#attachment_files').prop('files')[c]) for c in [0...files_count]
 
             $.ajax({
               url: "#{attachments_path}"
@@ -77,12 +79,15 @@
               type: 'post',
               success: (data, textStatus, jqXHR) ->
                 response = $.parseJSON(data)
-                $('#quick_answer_textarea').append('[attachment=' + response.attachment_id + ']')
+                bbcode_attachments = ''
+                bbcode_attachments += ('[attachment=' + id + '] \n') for id in response.attachments
+                $('#quick_answer_textarea').append(bbcode_attachments)
+                $('#loaded-content').html('#{t('my_forum.successfull_aploaded')}')
+                $('#add_photo').modal('hide')
+                $('#attachment_files').val('')
             })
 
 
       .modal-footer
         %button.btn.btn-default{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
           Close
-        %button.btn.btn-primary{ type: 'button' }
-          Save changes
