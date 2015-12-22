@@ -20,4 +20,4 @@
   .col-md-10
     .created_at= t('.sent', datetime: time(post.created_at))
     #post_container{ id: post.id }
-      = format_post_text(post)
+      = sanitize format_post_text(post)

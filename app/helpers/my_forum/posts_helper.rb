@@ -5,6 +5,9 @@ module MyForum
     end
 
     def format_bbcode(text)
+      # Line Breask
+      text.gsub!(/\r\n/, '<br />')
+
       # Images
       text.gsub!(/\[img\]/i,   '<img src="')
       text.gsub!(/\[\/img\]/i, '" />')
@@ -38,6 +41,10 @@ module MyForum
       #text.gsub!(/\[quote author=(.*?) link=(.*?) date=(.*?)\]/i) { bbquote(author: $1, date: $3) }
       #text.gsub!(/\[\/quote\]/i, '</div>')
       #text.gsub!(/\[quote(.*)\]/i, "<div class='bbqoute'>")
+      text.gsub!(/\[quote author=(?<autor>.*)\](?<text>.*)\[\/quote\]/m) do |match|
+        "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')}:</div> #{$~[:text]} </div>"
+      end
+
       text.gsub!(/(?<open>\[quote author=(?<autor>(.*?)) (.+)\](?<text>(.+))(?<close>\[\/quote\]))/i) do |match|
         # "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')} #{Time.now}:</div> #{$~[:text]} </div>"
         "<div class='bbqoute'> <div class='quote_info'>#{$~[:autor]} #{t('my_forum.bbquote.wrote')}:</div> #{$~[:text]} </div>"

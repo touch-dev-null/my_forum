@@ -5,6 +5,11 @@ module MyForum
     require 'jquery-rails'
     require 'bootstrap-sass'
 
+    config.after_initialize do
+      ActionView::Base.sanitized_allowed_tags = %w(strong em a img br p i pre div span)
+      ActionView::Base.sanitized_allowed_attributes = %w(href title class src)
+    end
+
     config.generators do |g|
       g.test_framework      :rspec,        :fixture => false
       g.assets false

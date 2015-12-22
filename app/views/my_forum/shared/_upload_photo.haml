@@ -37,7 +37,8 @@
               response = $.parseJSON(data)
               bbcode_attachments = ''
               bbcode_attachments += ('[attachment=' + id + '] \n') for id in response.attachments
-              $('##{textarea}').append(bbcode_attachments)
+              text = $('##{textarea}').val()
+              $('##{textarea}').val(text + '\n' + bbcode_attachments + '\n')
               $('#loaded-content').html('#{t('my_forum.successfull_aploaded')}')
               $('#add_photo').modal('hide')
               $('#attachment_files').val('')

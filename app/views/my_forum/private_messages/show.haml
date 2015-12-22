@@ -7,4 +7,4 @@
       = reply_pm_button(@pm)
 
       %h3= @pm.subject
-      = format_bbcode @pm.body
+      = sanitize format_bbcode @pm.body
