@@ -8,7 +8,9 @@ module MyForum
     end
 
     def can_quick_answer?(forum)
-      return false unless current_user
+      return false  unless current_user
+      return true   if is_admin?
+      return false  if forum.closed?
       true
     end
 

@@ -3,7 +3,7 @@ module MyForum
 
     before_filter :user_activity
 
-    helper_method :attachment_img_path, :emoticons_list
+    helper_method :attachment_img_path, :emoticons_list, :is_admin?
 
     def authenticate_user!
       redirect_to admin_signin_path unless current_user
@@ -18,6 +18,11 @@ module MyForum
       session[:user_id]
     end
     helper_method :current_user_id
+
+    def is_admin?
+      return false unless current_user
+      current_user.is_admin?
+    end
 
     def current_user_groups
       return [].push UserGroup::GUEST_GROUP.name unless current_user

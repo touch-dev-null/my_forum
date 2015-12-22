@@ -16,6 +16,7 @@ MyForum::Engine.routes.draw do
 
   resources :users do
     patch :avatar_update
+
     collection do
       get :autocomplete
     end
@@ -25,6 +26,9 @@ MyForum::Engine.routes.draw do
 
   resources :forums, only: [:index, :show] do
     resources :topics do
+      patch :pin
+      patch :close
+      patch :delete
       resources :posts
     end
   end

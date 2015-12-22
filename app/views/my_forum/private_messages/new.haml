@@ -13,9 +13,9 @@
           .form-group= form.text_field :recipient, value: @reply_pm.sender_login, class: 'subject form-control'
           .form-group= form.text_field :subject, value: @reply_pm.subject ,class: 'subject form-control', placeholder: t('.subject')
         - else
-          .form-group= form.text_field :recipient, class: 'subject form-control autocomplete', placeholder: t('.recipient'), data: { autocomplete_path: autocomplete_users_path }
+          .form-group= form.text_field :recipient, value: params[:to], class: 'subject form-control autocomplete', placeholder: t('.recipient'), data: { autocomplete_path: autocomplete_users_path }
           .form-group= form.text_field :subject, class: 'subject form-control', placeholder: t('.subject')
 
         .form-group= form.text_area :body, class: 'body form-control', placeholder: t('.body')
 
-        = form.submit class: 'btn btn-primary btn-sm'
+        = form.submit t('.send'), class: 'btn btn-primary btn-sm'

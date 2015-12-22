@@ -1,0 +1,22 @@
+.profile-popover
+  .row
+    .col-sm-5
+      = t('my_forum.profile_popover.posts_count')
+    .col-sm-4
+      = user.posts_count
+
+  .row
+    .col-sm-5
+      = t('my_forum.profile_popover.registered_at')
+    .col-sm-4
+      = time(user.created_at)
+
+  .row
+    .col-sm-5
+      = t('my_forum.profile_popover.status')
+    .col-sm-4
+      = is_online_user?(user.login) ? t('my_forum.profile_popover.online') : t('my_forum.profile_popover.offline')
+
+  .row.pm
+    .col-sm-12
+      = link_to t('my_forum.profile_popover.write_pm'), new_private_message_path(to: user.login), class: 'btn btn-xs btn-warning'

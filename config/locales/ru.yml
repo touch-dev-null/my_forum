@@ -3,6 +3,15 @@ ru:
   my_forum:
     mailer:
       new_pm_notification_subject: 'Уведомление о новом личном сообщении'
+
+    profile_popover:
+      posts_count: 'Сообщений на форуме: '
+      registered_at: 'Дата регистрации: '
+      status: 'Текущий статус:'
+      online: 'на форуме'
+      offline: 'не на форуме'
+      write_pm: 'Написать ЛС'
+
     today: "Сегодня в %{hhmm}"
     yesterday: "Вчера в %{hhmm}"
     create_new_pm: 'Написать личное сообщение'
@@ -71,6 +80,13 @@ ru:
         create_new_topic_in: "Создать новую тему в '%{topic_name}'"
       show:
         messages_in_topic: "Сообщений в теме: %{count}"
+        pin_topic: 'Закрепить тему'
+        unpin_topic: 'Открепить тему'
+        lock_topic: 'Закрыть тему'
+        unlock_topic: 'Открыть тему'
+        delete_topic: 'Удалить тему'
+        are_you_sure?: 'Вы уверены?'
+        warning_closed_topic: 'Внимание! Эта тема закрыта, никто кроме вас, не сможет ответить!'
       user_info:
         user_posts_count: "%{count} сообщений"
       quick_answer:
@@ -118,6 +134,8 @@ ru:
         recipient: 'Кому'
         subject: 'Тема'
         body: 'Сообщение'
+        new_private_message: 'Написать личное сообщение'
+        send: 'Отправить'
       create:
         cant_find_recipient: 'Ошибка, пользователя адресата не существует'
 

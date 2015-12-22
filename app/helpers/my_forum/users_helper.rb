@@ -17,6 +17,10 @@ module MyForum
       user.posts_count
     end
 
+    def is_online_user?(user_login)
+      User.online.pluck(:login).include?(user_login)
+    end
+
     def online_user_marker(user_login)
       return unless User.online.pluck(:login).include?(user_login)
       content_tag :div, '&nbsp;'.html_safe, class: 'label label-success'

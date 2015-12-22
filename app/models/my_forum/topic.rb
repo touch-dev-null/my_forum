@@ -4,6 +4,8 @@ module MyForum
     belongs_to  :forum, counter_cache: true
     belongs_to  :user
 
+    default_scope { where(deleted: false) }
+
     def info
       author  = (post = posts.first).user.login
       created = post.created_at

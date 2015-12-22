@@ -2,7 +2,8 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class TopicsController < ApplicationController
-    before_filter :find_forum, only: [:new, :create, :show]
+    before_filter :find_forum,      only: [:new, :create, :show]
+    before_filter :check_is_admin,  only: [:pin, :close, :delete]
 
     def new
       @topic = @forum.topics.build
@@ -33,7 +34,33 @@ module MyForum
       redirect_to forum_path(@forum)
     end
 
+    def pin
+      return unless topic = Topic.find_by_id(params[:topic_id])
+      topic.toggle!(:pinned)
+
+      redirect_to forum_topic_path(topic.forum, topic)
+    end
+
+    def close
+      return unless topic = Topic.find_by_id(params[:topic_id])
+      topic.toggle!(:closed)
+
+      redirect_to forum_topic_path(topic.forum, topic)
+    end
+
+    def delete
+      return unless topic = Topic.find_by_id(params[:topic_id])
+      topic.update!(deleted: true)
+
+      redirect_to forum_path(topic.forum)
+    end
+
     private
+
+    def check_is_admin
+      return unless current_user
+      return unless current_user.is_admin?
+    end
 
     def find_forum
       @forum = Forum.find(params[:forum_id])

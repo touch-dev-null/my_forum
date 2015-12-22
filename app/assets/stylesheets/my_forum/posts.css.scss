@@ -1,3 +1,13 @@
+.profile-popover {
+  width: 360px;
+  font-size: 11px;
+  color: #000;
+
+  .pm {
+    margin-top: 10px;
+  }
+}
+
 .topic_posts_info {
   background-color: #d3daed;
   color: #fff;
@@ -14,9 +24,17 @@
     border: 1px solid #DFDFDF;
     background-color: #fff;
 
+    .user_profile_popover {
+      cursor: pointer;
+    }
+
     .post_from_user_login {
       font-weight: bold;
       color: #c1ccf5;
+    }
+
+    .post_from_user_login .login:hover {
+      color: #fff;
     }
 
     .post-header {

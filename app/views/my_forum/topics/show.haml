@@ -16,14 +16,49 @@
         .row
           = will_paginate @topic_posts
 
+      - if is_admin?
+        .row
+          - options = { method: :patch, data: { confirm: t('.are_you_sure?') } }
+
+          - @topic.pinned? ? options.merge!(class: 'btn btn-sm btn-info') : options.merge!(class: 'btn btn-sm btn-warning')
+          = link_to (@topic.pinned? ? t('.unpin_topic') : t('.pin_topic')), forum_topic_pin_path(@topic.forum, @topic), options
+
+          - @topic.closed? ? options.merge!(class: 'btn btn-sm btn-info') : options.merge!(class: 'btn btn-sm btn-danger')
+          = link_to (@topic.closed? ? t('.unlock_topic') : t('.lock_topic')), forum_topic_close_path(@topic.forum, @topic), options
+
+          - options.merge!(class: 'btn btn-sm btn-danger')
+          = link_to t('.delete_topic'), forum_topic_delete_path(@topic.forum, @topic), options
+
       - if can_quick_answer?(@topic)
         #quick_answer
+          - if @topic.closed?
+            .alert.alert-danger=t('.warning_closed_topic')
           = render 'quick_answer', forum: @forum, topic: @topic
 
 :coffee
   $(document).on 'ready page:load', ->
+
+    $('.user_profile_popover').popover(
+      trigger: 'click'
+      html: true
+      delay:
+        'show': 100
+        'hide': 200
+    ).on('mouseenter', ->
+        _this = this
+        $(this).popover("show")
+        $(this).siblings(".popover").on('mouseleave', ->
+          $(_this).popover('hide')
+        )
+      )
+      .on('mouseleave', ->
+        _this = this
+        setTimeout (-> $(_this).popover("hide") if !$(".popover:hover").length ), 300
+      )
+
+
     container = $('body')
     scroll_to = $('post_number_' + "#{params[:show_post]}")
     scroll_to = 'post_number_' + "#{params[:show_post]}"
 
-    $('body').scrollTo(scroll_to);
+    $('body').scrollTo(scroll_to)
