@@ -35,7 +35,7 @@ module MyForum
         JOIN my_forum_posts ON my_forum_posts.id = my_forum_topics.latest_post_id
         JOIN my_forum_users ON my_forum_posts.user_id = my_forum_users.id
         WHERE my_forum_topics.forum_id = #{self.id} AND my_forum_topics.deleted IS FALSE
-        ORDER BY my_forum_posts.id DESC
+        ORDER BY my_forum_topics.pinned DESC, my_forum_posts.id DESC
       ", page: page, per_page: per_page)
     end
 
