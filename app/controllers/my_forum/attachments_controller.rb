@@ -12,7 +12,7 @@ module MyForum
       attachment_ids = []
 
       params[:files].each do |uploaded_io|
-        next unless Attachment::ALLOWED_FILE_EXTENSIONS.include? File.extname(uploaded_io.original_filename)
+        next unless Attachment::ALLOWED_FILE_CONTENT_TYPE.include? uploaded_io.content_type
 
         file_name = "#{Time.now.to_i}_#{uploaded_io.original_filename}"
         File.open(File.join(upload_path, file_name), 'wb') do |file|

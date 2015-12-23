@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012095554) do
+ActiveRecord::Schema.define(version: 20151221205045) do
 
   create_table "my_forum_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_forum_category_permissions", force: :cascade do |t|
@@ -26,14 +26,22 @@ ActiveRecord::Schema.define(version: 20151012095554) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "my_forum_emoticons", force: :cascade do |t|
+    t.string   "file_name"
+    t.string   "code"
+    t.boolean  "is_active",  default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
   create_table "my_forum_forums", force: :cascade do |t|
     t.integer  "category_id"
     t.string   "name"
     t.string   "description"
     t.integer  "topics_count"
     t.integer  "posts_count"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "my_forum_images", force: :cascade do |t|
@@ -50,22 +58,25 @@ ActiveRecord::Schema.define(version: 20151012095554) do
     t.integer  "user_id"
     t.integer  "topic_id"
     t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_forum_posts", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "topic_id"
     t.integer  "forum_id"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text     "text",       limit: 4294967295
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.boolean  "is_deleted",                    default: false
   end
 
   create_table "my_forum_private_messages", force: :cascade do |t|
     t.integer  "sender_id"
+    t.string   "sender_login"
     t.integer  "recipient_id"
+    t.string   "recipient_login"
     t.boolean  "sender_deleted",    default: false
     t.boolean  "recipient_deleted", default: false
     t.boolean  "unread",            default: true
@@ -79,8 +90,8 @@ ActiveRecord::Schema.define(version: 20151012095554) do
     t.string   "name"
     t.string   "color"
     t.text     "rights"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_forum_topics", force: :cascade do |t|
@@ -94,44 +105,54 @@ ActiveRecord::Schema.define(version: 20151012095554) do
     t.boolean  "pinned",         default: false
     t.boolean  "closed",         default: false
     t.boolean  "deleted",        default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "is_deleted",     default: false
   end
 
   create_table "my_forum_user_group_links", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "user_group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "my_forum_user_groups", force: :cascade do |t|
     t.string   "name"
     t.string   "html_color"
     t.boolean  "default",    default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "my_forum_user_roles", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "role_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "my_forum_users", force: :cascade do |t|
     t.string   "login"
     t.string   "password"
     t.string   "salt"
+    t.string   "real_name"
+    t.integer  "gender"
+    t.date     "birthdate"
+    t.text     "signature"
+    t.text     "avatar_url"
+    t.string   "location"
+    t.string   "user_ip"
+    t.text     "additional_info"
     t.string   "email"
     t.integer  "posts_count"
+    t.boolean  "activated",          default: false
     t.boolean  "is_admin",           default: false
     t.boolean  "is_moderator",       default: false
     t.boolean  "is_deleted",         default: false
     t.boolean  "permanently_banned", default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.datetime "last_logged_in"
   end
 

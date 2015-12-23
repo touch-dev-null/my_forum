@@ -6,8 +6,8 @@ module MyForum
     require 'bootstrap-sass'
 
     config.after_initialize do
-      ActionView::Base.sanitized_allowed_tags = %w(strong em a img br p i pre div span)
-      ActionView::Base.sanitized_allowed_attributes = %w(href title class src)
+      ActionView::Base.sanitized_allowed_tags = %w(strong em a img br p i pre div span iframe)
+      ActionView::Base.sanitized_allowed_attributes = %w(href title class src width height)
     end
 
     config.generators do |g|

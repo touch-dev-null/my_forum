@@ -10,6 +10,7 @@ ru:
       status: 'Текущий статус:'
       online: 'на форуме'
       offline: 'не на форуме'
+      last_online: 'Был на форуме'
       write_pm: 'Написать ЛС'
 
     today: "Сегодня в %{hhmm}"

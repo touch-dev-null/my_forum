@@ -14,9 +14,9 @@ module MyForum
         process_attachments(post)
       end
 
-      last_page = @topic.posts.count / Post::PER_PAGE
+      last_page = (@topic.posts.count.to_f / Post::PER_PAGE).ceil
       last_page = 1 if last_page == 0
-      redirect_to forum_topic_path(@forum, @topic, page: last_page)
+      redirect_to forum_topic_path(@forum, @topic, page: last_page, go_to_last_post: true)
     end
 
     def destroy

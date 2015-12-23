@@ -112,7 +112,7 @@ module MyForum
     end
 
     def upload_avatar(avatar_param)
-      return false unless Avatar::ALLOWED_FILE_EXTENSIONS.include? File.extname(avatar_param.original_filename)
+      return false unless Avatar::ALLOWED_FILE_CONTENT_TYPE.include? avatar_param.content_type
 
       current_avatar  = current_user.avatar
       upload_path     = File.join(Avatar::UPLOAD_PATH, current_user.id.to_s)

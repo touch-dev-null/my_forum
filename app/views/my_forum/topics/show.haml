@@ -13,7 +13,7 @@
           .box
             = render partial: 'post', collection: @topic_posts
 
-        .row
+        .row{ id: 'pagination' }
           = will_paginate @topic_posts
 
       - if is_admin?
@@ -56,9 +56,4 @@
         setTimeout (-> $(_this).popover("hide") if !$(".popover:hover").length ), 300
       )
 
-
-    container = $('body')
-    scroll_to = $('post_number_' + "#{params[:show_post]}")
-    scroll_to = 'post_number_' + "#{params[:show_post]}"
-
-    $('body').scrollTo(scroll_to)
+    $('body').scrollTo('#pagination')
