@@ -4,6 +4,7 @@ rvm:
 env:
   - DB=sqlite
 script:
-  - gem update my_forum
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rspec spec
+before_install:
+  - gem update my_forum
