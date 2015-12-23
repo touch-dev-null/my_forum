@@ -11,7 +11,6 @@ gem 'rspec'
 gem 'rspec-rails', '~> 3.0'
 gem 'will_paginate', '~> 3.0'
 gem 'font-awesome-sass'
-gem 'my_forum', '~> 0.0.1.beta23'
 
 group :test do
   gem 'sqlite3'
