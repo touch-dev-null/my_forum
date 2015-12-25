@@ -1,6 +1,7 @@
 = new_topic_button
 
-= link_to t('.mark_all_as_read'), mark_all_as_read_path
+- if current_user
+  = link_to t('.mark_all_as_read'), mark_all_as_read_path
 
 .container-fluid
   .row.forum-header

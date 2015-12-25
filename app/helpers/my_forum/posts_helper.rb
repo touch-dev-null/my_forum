@@ -7,6 +7,7 @@ module MyForum
     def format_bbcode(text)
       # Line Breask
       text.gsub!(/\r\n/, '<br />')
+      text.gsub!(/\n/, '<br />')
 
       # Images
       text.gsub!(/\[img\]/i,   '<img src="')

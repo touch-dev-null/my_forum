@@ -1,0 +1,15 @@
+#modal_post_preview.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          %span{ aria_hidden: "true" }
+            &times;
+        %h4.modal-title
+          = t('.preview')
+      .modal-body
+
+
+      .modal-footer
+        %button.btn.btn-default{ type: 'button', aria_label: 'Close', data: { dismiss: 'modal' } }
+          Close

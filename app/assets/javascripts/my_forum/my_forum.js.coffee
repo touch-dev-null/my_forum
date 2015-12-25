@@ -90,6 +90,9 @@ autocomplete_popup = (autocomplete_list, object) ->
     popup_container = $("<div id='#{popup_id}'></div>")
     $(object).after(popup_container)
 
+  $('body').click ->
+    popup_container.remove()
+
   # Show lists
   html_list = $('<ul/>')
   $.map autocomplete_list, (item) ->

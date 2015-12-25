@@ -1,3 +1,3 @@
 module MyForum
-  VERSION = "0.0.1.beta33"
+  VERSION = "0.0.1.beta37"
 end

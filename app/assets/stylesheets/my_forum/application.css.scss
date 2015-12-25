@@ -19,6 +19,12 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+.modal-dialog {
+  .post_attachment {
+    max-width: 200px;
+  }
+}
+
 .buttons_for_new_topic {
   margin-top: 10px;
 }

@@ -8,9 +8,9 @@
 
       = errors_for @pm
 
-      = form_for @pm, url: private_messages_path, role: 'form' do |form|
+      = form_for @pm, url: private_messages_path, role: 'form', autocomplete: 'off' do |form|
         - if params[:reply]
-          .form-group= form.text_field :recipient, value: @reply_pm.sender_login, class: 'subject form-control'
+          .form-group= form.text_field :recipient, value: @reply_pm.sender_login, autocomplete: 'off', class: 'subject form-control'
           .form-group= form.text_field :subject, value: @reply_pm.subject ,class: 'subject form-control', placeholder: t('.subject')
         - else
           .form-group= form.text_field :recipient, value: params[:to], class: 'subject form-control autocomplete', placeholder: t('.recipient'), data: { autocomplete_path: autocomplete_users_path }

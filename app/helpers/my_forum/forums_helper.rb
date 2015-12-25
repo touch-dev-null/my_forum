@@ -34,6 +34,7 @@ module MyForum
     end
 
     def new_topic_button
+      return unless current_user
       return unless @forum
       content_tag :div, class: 'buttons_for_new_topic' do
         link_to t('my_forum.create_new_topic'), new_forum_topic_path(@forum), class: 'btn btn-primary'

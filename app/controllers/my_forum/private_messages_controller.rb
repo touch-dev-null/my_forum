@@ -50,6 +50,8 @@ module MyForum
 
       UserMailer.pm_notification(recipient, current_user).deliver_now if @pm.save
 
+      flash[:notice] = I18n.t('my_forum.pm.sent')
+
       redirect_to action: :index
     end
 

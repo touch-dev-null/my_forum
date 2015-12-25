@@ -1,8 +1,13 @@
 ru:
   today: "Сегодня"
   my_forum:
+    pm:
+      sent: 'Сообщение отправленно'
     mailer:
       new_pm_notification_subject: 'Уведомление о новом личном сообщении'
+    shared:
+      post_preview:
+        preview: 'Предпросмотр сообщения'
 
     profile_popover:
       posts_count: 'Сообщений на форуме: '
@@ -92,6 +97,7 @@ ru:
         user_posts_count: "%{count} сообщений"
       quick_answer:
         quick_answer: 'Быстрый ответ'
+        quick_answer_preview: 'Предварительный просмотр'
         advanced_answer: 'Расширенный ответ'
       post:
         sent: "Отправленно: %{datetime}"

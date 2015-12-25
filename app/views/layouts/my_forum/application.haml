@@ -9,12 +9,14 @@
   %body.container-fluid
 
     #forum_header
-      =link_to root_path do
-        = image_tag('lada_head.jpg')
       #guest_navbar
         = render current_user ? '/layouts/my_forum/user_navbar' : '/layouts/my_forum/guest_navbar'
 
     #body
+      - if flash[:notice]
+        .row
+          .alert.alert-success.text-center{ role: 'alert' }
+            = flash[:notice]
       .row
         .col-md-6
           #forum-navigation= draw_navigation

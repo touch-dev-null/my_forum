@@ -12,7 +12,7 @@
           %i{ class: 'fa fa-underline' }
 
       %div.btn-group
-        =link_to '#', class: 'btn btn-default btn-sm', data: { toggle: 'modal' } do
+        =link_to '#', class: 'btn btn-default btn-sm' do
           %i{ class: 'fa fa-camera-retro' }
 
       %div.btn-group.smiles
@@ -27,6 +27,8 @@
       .form-group= form.text_area :text, class: 'form-control quick-answer', id: 'quick_answer_textarea'
 
       .pull-right
+        %button#post_preview{ class: 'btn btn-primary', data: { elm_preview: 'quick_answer_textarea' }}= t('.quick_answer_preview')
         = form.submit t('.quick_answer'), class: 'btn btn-primary'
 
         = render partial: 'my_forum/shared/upload_photo', locals: { textarea: 'quick_answer_textarea' }
+        = render partial: 'my_forum/shared/post_preview'

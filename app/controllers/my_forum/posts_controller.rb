@@ -2,8 +2,10 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class PostsController < ApplicationController
-    before_filter :find_topic, except: [:show]
-    before_filter :find_forum, except: [:show]
+    before_filter :find_topic, except: [:show, :preview]
+    before_filter :find_forum, except: [:show, :preview]
+
+    include PostsHelper
 
     def create
       unless params[:post].fetch(:text).blank?
@@ -30,6 +32,11 @@ module MyForum
       respond_to do |format|
         format.js { render json: { text: post.text, author: post.user.login }.as_json, status: :ok }
       end
+    end
+
+    def preview
+      preview_html = ActionController::Base.helpers.sanitize format_bbcode(params[:text])
+      render '/my_forum/shared/post_preview.js.coffee', layout: false, locals: { preview_html: preview_html }
     end
 
     private
