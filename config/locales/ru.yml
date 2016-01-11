@@ -26,6 +26,7 @@ ru:
       phone: 'Телефон'
       car_info: 'Марка авто'
       write_pm: 'Написать ЛС'
+      only_for_registereg_users: 'Доступно только зарегестрированным пользователям'
 
     today: "Сегодня в %{hhmm}"
     yesterday: "Вчера в %{hhmm}"
