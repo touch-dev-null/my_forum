@@ -59,6 +59,7 @@ module MyForum
       if request.post?
         return unless user = User.find_by_email(params[:user][:email])
         UserMailer.reset_password_email(user).deliver_now
+        flash[:notice] = t('.new_password_sent')
         redirect_to root_path
       end
     end

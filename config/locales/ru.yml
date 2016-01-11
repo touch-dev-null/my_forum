@@ -130,6 +130,7 @@ ru:
       forgot_password:
         forgot_password_head: 'Восстановление пароля'
         reset_password: 'Сбросить пароль'
+        new_password_sent: 'Новый пароль отправлен на указанный email'
       edit:
         edit_profile: 'Редактирование персональных данных'
         email: 'Электронная почта'

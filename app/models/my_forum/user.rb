@@ -35,8 +35,7 @@ module MyForum
           def #{attr}=(value)
             self.additional_info ||= {}
             self.additional_info[:#{attr}] = value
-          end
-          "
+          end"
       end
     end
 

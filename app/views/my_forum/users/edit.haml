@@ -31,6 +31,6 @@
   .col-md-4
     = form_for current_user, url: user_path(current_user), role: 'form' do |form|
       - additional_info_attrs.each do |attr|
-        .form-group= form.text_field attr, class: 'name form-control', placeholder: t("my_forum.additional_info.#{attr.to_s}")
+        .form-group= form.text_field attr, value: current_user.send(attr), class: 'name form-control', placeholder: t("my_forum.additional_info.#{attr.to_s}")
 
       = form.submit t('.update'), class: 'btn btn-primary btn-sm'
