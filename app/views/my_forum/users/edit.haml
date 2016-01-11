@@ -25,3 +25,12 @@
         .row= form.file_field :avatar
         .row= form.text_field :avatar_url, placeholder: 'http://...'
         .row= form.submit t('.update_avatar'), class: 'btn btn-primary btn-sm submit_update_avatar'
+%br
+%h2= t('.edit_additional_info')
+.row
+  .col-md-4
+    = form_for current_user, url: user_path(current_user), role: 'form' do |form|
+      - additional_info_attrs.each do |attr|
+        .form-group= form.text_field attr, class: 'name form-control', placeholder: t("my_forum.additional_info.#{attr.to_s}")
+
+      = form.submit t('.update'), class: 'btn btn-primary btn-sm'

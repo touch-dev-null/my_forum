@@ -25,5 +25,9 @@ module MyForum
       return unless User.online.pluck(:login).include?(user_login)
       content_tag :div, '&nbsp;'.html_safe, class: 'label label-success'
     end
+
+    def additional_info_attrs
+      MyForum::User::ADDITIONAL_INFO_ATTRS
+    end
   end
 end

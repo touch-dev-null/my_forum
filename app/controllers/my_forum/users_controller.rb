@@ -14,7 +14,13 @@ module MyForum
 
     def update
       update_password
-      current_user.update_columns(user_update_params)
+
+      current_user.update!(user_update_params)
+
+      User::ADDITIONAL_INFO_ATTRS.each do |attr|
+        current_user.update(attr => params[:user][attr]) if params[:user][attr]
+      end
+
       redirect_to edit_user_path(current_user)
     end
 

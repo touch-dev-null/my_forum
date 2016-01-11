@@ -1,10 +1,13 @@
 .profile-popover {
-  width: 360px;
   font-size: 11px;
   color: #000;
 
+  .second_row {
+    margin-left: 10px;
+  }
+
   .pm {
-    margin-top: 10px;
+    margin: 16px 0;
   }
 }
 
@@ -29,6 +32,12 @@
     }
 
     .post_from_user_login {
+      .user_profile_popover {
+        position: relative;
+        z-index: 100;
+        padding: 5px;
+      }
+
       font-weight: bold;
       color: #c1ccf5;
     }

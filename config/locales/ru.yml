@@ -8,14 +8,23 @@ ru:
     shared:
       post_preview:
         preview: 'Предпросмотр сообщения'
+    additional_info:
+      real_name: 'Ваше имя'
+      phone: 'Контактный телефон'
+      website_url: 'Ваш сайт'
+      personal_text: 'Подпись'
+      car_info: 'Марка и модель авто'
 
     profile_popover:
-      posts_count: 'Сообщений на форуме: '
-      registered_at: 'Дата регистрации: '
-      status: 'Текущий статус:'
+      posts_count: 'Сообщений: '
+      registered_at: 'Регистрация: '
+      status: 'Статус:'
       online: 'на форуме'
       offline: 'не на форуме'
-      last_online: 'Был на форуме'
+      last_online: 'Был на форуме:'
+      user_name: 'Имя'
+      phone: 'Телефон'
+      car_info: 'Марка авто'
       write_pm: 'Написать ЛС'
 
     today: "Сегодня в %{hhmm}"
@@ -130,6 +139,7 @@ ru:
         avatar_upload_description: 'Загрузите свой аватар или укажите ссылку'
         update: 'Обновить'
         update_avatar: 'Обновить аватар'
+        edit_additional_info: 'Дополнительная информация'
 
 
     private_messages:

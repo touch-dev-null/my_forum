@@ -1,22 +1,45 @@
 .profile-popover
-  .row
-    .col-sm-5= t('my_forum.profile_popover.posts_count')
-    .col-sm-4= user.posts_count
+  .row.col-md-12
+    .row.col-md-6
+      .row
+        .col-sm-6
+          %strong= t('my_forum.profile_popover.posts_count')
+        .col-sm-6
+          = user.posts_count
+      .row
+        .col-sm-6
+          %strong= t('my_forum.profile_popover.registered_at')
+        .col-sm-6
+          = time(user.created_at)
+      .row
+        .col-sm-6
+          %strong= t('my_forum.profile_popover.status')
+        .col-sm-6
+          - is_online = is_online_user?(user.login)
+          = is_online ? t('my_forum.profile_popover.online') : t('my_forum.profile_popover.offline')
+      - unless is_online
+        .row
+          .col-sm-6
+            %strong= t('my_forum.profile_popover.last_online')
+          .col-sm-6
+            = time(user.updated_at)
+      .row.pm
+        .col-sm-12= link_to t('my_forum.profile_popover.write_pm'), new_private_message_path(to: user.login), class: 'btn btn-xs btn-warning'
 
-  .row
-    .col-sm-5= t('my_forum.profile_popover.registered_at')
-    .col-sm-4= time(user.created_at)
+    .row.col-md-6.second_row
+      .row
+        .col-sm-5
+          %strong= t('my_forum.profile_popover.user_name')
+        .col-sm-7
+          = user.phone || '-'
+      .row
+        .col-sm-5
+          %strong= t('my_forum.profile_popover.phone')
+        .col-sm-7
+          = user.real_name || '-'
+      .row
+        .col-sm-5
+          %strong= t('my_forum.profile_popover.car_info')
+        .col-sm-7
+          = user.car_info || '-'
 
-  .row
-    .col-sm-5= t('my_forum.profile_popover.status')
-    .col-sm-4
-      - is_online = is_online_user?(user.login)
-      = is_online ? t('my_forum.profile_popover.online') : t('my_forum.profile_popover.offline')
-
-  - unless
-    .row
-      .col-sm-5= t('my_forum.profile_popover.last_online')
-      .col-sm-4= time(user.updated_at)
-
-  .row.pm
-    .col-sm-12= link_to t('my_forum.profile_popover.write_pm'), new_private_message_path(to: user.login), class: 'btn btn-xs btn-warning'

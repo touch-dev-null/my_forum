@@ -19,6 +19,15 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+.popover {
+  min-width: 540px !important;
+}
+
+.popover-title {
+  font-weight: bold;
+  color: #000;
+}
+
 .modal-dialog {
   .post_attachment {
     max-width: 200px;
