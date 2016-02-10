@@ -7,7 +7,7 @@ module MyForum
 
     config.after_initialize do
       ActionView::Base.sanitized_allowed_tags = %w(strong em a img br p i pre div span iframe)
-      ActionView::Base.sanitized_allowed_attributes = %w(href title class src width height)
+      ActionView::Base.sanitized_allowed_attributes = %w(href title class src width height target)
     end
 
     config.generators do |g|

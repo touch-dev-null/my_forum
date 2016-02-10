@@ -57,8 +57,8 @@ module MyForum
       end
 
       # Link
-      text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i)    { "<a href='#{$1}'>#{$2}</a>" }
-      text.gsub!(/(http:\/\/[\S]+|www:\/\/[\S]+)/)  { "<a target=\"_blank\" href=#{$1}>#{$1}</a>"}
+      text.gsub!(/\[url=(.*?)\](.*?)\[\/url\]/i)    { link_to($2, $1, target: '_blank') }
+      text.gsub!(/(http:\/\/[\S]+|www:\/\/[\S]+)/i) { link_to($1, $1, target: '_blank') }
 
       text.html_safe
     end

@@ -15,7 +15,7 @@ module MyForum
 
       user_last_page = get_last_readed_user_page
 
-      @topic_posts  = @topic.posts.paginate(per_page: Post::PER_PAGE, page: (params[:page] || user_last_page))
+      @topic_posts  = @topic.posts.includes(:user, :topic).paginate(per_page: Post::PER_PAGE, page: (params[:page] || user_last_page))
       @new_post = Post.new #TODO if quick_answer_enabled
 
       @topic.mark_as_read(current_user, @topic_posts.last)
@@ -62,8 +62,8 @@ module MyForum
 
     # TODO development in progress
     def get_last_readed_user_page
-      return nil unless params[:page].blank? or current_user
-      return nil if
+      return nil if current_user.blank?
+      return nil unless params[:page].blank?
       user_last_page = nil
 
       latest_readed_post = LogReadMark.where(user_id: current_user.id, topic_id: @topic.id).first

@@ -24,11 +24,11 @@ module MyForum
     end
 
     def forum_last_message_info(forum)
-      info = forum.latest_topic_info
+      topic = forum.topics.order('latest_post_created_at DESC').first
 
-      html  = content_tag(:div, info ? (t('.last_answer_from') + info.user_login) : '-' )
-      html += content_tag(:div, info ? (link_to((t('.in_forum') + info.topic_name), forum_topic_path(info.forum_id, info.id))) : '-' )
-      html += content_tag(:div, info ? forum_time(info.post_created_at) : '-' )
+      html  = content_tag(:div, topic ? (t('.last_answer_from') + topic.latest_post_login) : '-' )
+      html += content_tag(:div, topic ? (link_to((t('.in_forum') + topic.name), forum_topic_path(topic.forum_id, topic.id))) : '-' )
+      html += content_tag(:div, topic ? forum_time(topic.latest_post_created_at) : '-' )
 
       html.html_safe
     end

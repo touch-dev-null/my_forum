@@ -1,9 +1,9 @@
 .container-fluid
   .row
-    #topic_header.col-md-9
+    #topic_header.col-md-8
       = render 'topic_header', topic: @topic
-    .col-md-3
-      = will_paginate @topic_posts
+    .col-md-4.text-right
+      = will_paginate @topic_posts, inner_window: 1, outer_window: 1
   .row
     .col-md-12
       #posts

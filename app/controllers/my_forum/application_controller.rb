@@ -10,7 +10,7 @@ module MyForum
     end
 
     def current_user
-      return session[:user_id].blank? ? nil : User.where(id: session[:user_id]).includes(:user_groups).first
+      return session[:user_id].blank? ? nil : User.where(id: session[:user_id]).first
     end
     helper_method :current_user
 
@@ -79,7 +79,7 @@ module MyForum
     end
 
     def emoticons_list
-      Emoticon.all.inject({}) {|hash, smile| hash.merge!(smile.code => File.join(Emoticon::URL, smile.file_name) ) }
+      @emoticson ||= Emoticon.all.inject({}) {|hash, smile| hash.merge!(smile.code => File.join(Emoticon::URL, smile.file_name) ) }
     end
   end
 end
