@@ -2,11 +2,11 @@ module MyForum
   module ForumsHelper
 
     def forum_status_img(forum)
-      unread = 'lada_logo_unread.jpg'
-      read = 'lada_logo.jpg'
+      unread  = 'lada_logo_unread.jpg'
+      read    = 'lada_logo.jpg'
 
-      display_as = unread
-      display_as = read unless current_user && forum.has_unread_posts?(current_user)
+      display_as = read
+      display_as = unread if forum.has_unread_posts?(current_user)
 
       image_tag(display_as, width: '66px')
     end

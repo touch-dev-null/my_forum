@@ -4,28 +4,17 @@ module MyForum
     has_many  :topics
     has_many  :posts
 
-    # TODO: Deprecated
-    # def latest_topic_info
-    #   Topic.find_by_sql("
-    #     SELECT
-    #       my_forum_topics.name AS topic_name,
-    #       my_forum_topics.forum_id,
-    #       my_forum_topics.id,
-    #       my_forum_topics.latest_post_created_at AS post_created_at,
-    #       my_forum_topics.latest_post_login AS user_login
-    #     FROM my_forum_topics
-    #     WHERE my_forum_topics.forum_id = #{self.id}
-    #     LIMIT 1
-    #   ").first
-    # end
-
     def has_unread_posts?(current_user)
-      latest_post_ids = self.topics.where('updated_at >= ?', current_user.created_at).pluck(:latest_post_id)
-      read_log = LogReadMark.where("user_id = ? AND post_id IN (?)", current_user.id, latest_post_ids).count
+      return false unless current_user
 
-      latest_post_ids.length != read_log
+      latest_post_ids = self.topics.where('latest_post_created_at >= ?', current_user.created_at).pluck(:latest_post_id)
+      read_log = []
+      read_log = LogReadMark.where("user_id = ? AND post_id IN (?)", current_user.id, latest_post_ids).pluck(:post_id) unless latest_post_ids.blank?
+
+      !(latest_post_ids - read_log).empty?
     end
 
+    # Forum index page
     def topics_with_latest_post_info(page: 0, per_page: 30)
       Topic.paginate_by_sql("
         SELECT
@@ -34,7 +23,7 @@ module MyForum
           my_forum_topics.latest_post_login AS last_post_user_login
         FROM my_forum_topics
         WHERE my_forum_topics.forum_id = #{self.id} AND my_forum_topics.deleted IS FALSE
-        ORDER BY my_forum_topics.pinned, my_forum_topics.latest_post_created_at DESC
+        ORDER BY my_forum_topics.pinned DESC, my_forum_topics.latest_post_created_at DESC
       ", page: page, per_page: per_page)
     end
 

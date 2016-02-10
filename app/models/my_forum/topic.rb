@@ -21,7 +21,10 @@ module MyForum
       return false unless current_user
       return false if current_user.created_at > last_post.created_at
 
-      !LogReadMark.where(user_id: current_user.id, topic_id: self.id, post_id: last_post.id).present?
+      logged_post = LogReadMark.where(user_id: current_user.id, topic_id: self.id).first
+      return true unless logged_post
+
+      last_post.id > logged_post.post_id
     end
 
     def mark_as_read(current_user, last_post)
