@@ -12,7 +12,10 @@ module MyForum
     def show
       @topic = Topic.find(params[:id])
       check_access_permissions(@topic)
-      @topic_posts = @topic.posts.paginate(per_page: Post::PER_PAGE, page: params[:page])
+
+      user_last_page = get_last_readed_user_page
+
+      @topic_posts  = @topic.posts.paginate(per_page: Post::PER_PAGE, page: (params[:page] || user_last_page))
       @new_post = Post.new #TODO if quick_answer_enabled
 
       @topic.mark_as_read(current_user, @topic_posts.last)
@@ -56,6 +59,22 @@ module MyForum
     end
 
     private
+
+    # TODO development in progress
+    def get_last_readed_user_page
+      return nil unless params[:page].blank? or current_user
+      return nil if
+      user_last_page = nil
+
+      latest_readed_post = LogReadMark.where(user_id: current_user.id, topic_id: @topic.id).first
+      return nil unless latest_readed_post
+
+      page_groups = @topic.posts.pluck(:id).in_groups_of(Post::PER_PAGE)
+      page_groups.each_with_index { |group, page| user_last_page = page and break if group.include?(latest_readed_post.post_id) }
+      user_last_page +=1 if user_last_page
+
+      user_last_page
+    end
 
     def check_is_admin
       return unless current_user
