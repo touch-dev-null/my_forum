@@ -2,6 +2,7 @@ require_dependency "my_forum/application_controller"
 
 module MyForum
   class PostsController < ApplicationController
+    before_filter :verify_admin, only: [:edit, :update]
     before_filter :find_topic, except: [:show, :preview]
     before_filter :find_forum, except: [:show, :preview]
 
@@ -32,6 +33,21 @@ module MyForum
       respond_to do |format|
         format.js { render json: { text: post.text, author: post.user.login }.as_json, status: :ok }
       end
+    end
+
+    def edit
+      @forum  = Forum.find(params[:forum_id])
+      @topic  = Topic.find(params[:topic_id])
+      @post   = Post.find(params[:id])
+    end
+
+    def update
+      post = Post.find(params[:id])
+      post.text       = params[:post][:text]
+      post.edited_by  = current_user.login
+      post.save
+
+      redirect_to forum_topic_path(post.topic.forum, post.topic, page: params[:page])
     end
 
     def preview

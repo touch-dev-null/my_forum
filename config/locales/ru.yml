@@ -110,10 +110,17 @@ ru:
         quick_answer_preview: 'Предварительный просмотр'
         advanced_answer: 'Расширенный ответ'
       post:
+        edited_by: "Было отредактированно %{login}, %{date}"
         sent: "Отправленно: %{datetime}"
         number: "Сообщение #%{post_number}"
         quote: 'Цитировать'
+        edit: 'изменить'
         delete: 'удалить'
+
+    posts:
+      edit:
+        post_text: 'Текст поста'
+        edit_post_in: "Редактировать пост в '%{topic_name}'"
 
     users:
       signin:

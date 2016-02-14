@@ -1,0 +1,31 @@
+%h2= t('.edit_post_in', topic_name: @topic.name)
+
+#edit-post
+  = form_for @post, url: forum_topic_post_path(@forum, @topic, @post, page: params[:page]), role: 'form' do |form|
+    .row
+      .col-md-12
+        .text-editor-buttons{ data: { apply_to: 'post_text' } }
+          %div.btn-group
+            =link_to '#', class: 'btn btn-default btn-sm' do
+              %i{ class: 'fa fa-bold' }
+            =link_to '#', class: 'btn btn-default btn-sm' do
+              %i{ class: 'fa fa-italic' }
+            =link_to '#', class: 'btn btn-default btn-sm' do
+              %i{ class: 'fa fa-strikethrough' }
+            =link_to '#', class: 'btn btn-default btn-sm' do
+              %i{ class: 'fa fa-underline' }
+
+          %div.btn-group
+            =link_to '#', class: 'btn btn-default btn-sm', data: { toggle: 'modal' } do
+              %i{ class: 'fa fa-camera-retro' }
+
+          %div.btn-group.smiles
+            - emoticons_list.each do |code, path|
+              =link_to '#', class: 'btn btn-default btn-sm smile-past' do
+                %img{ src: path, class: 'smile', data: { code: code } }
+
+        .form-group= form.text_area :text, placeholder: t('.post_text'), class: 'form-control', rows: 10
+
+    = form.submit class: 'btn '
+
+    = render partial: 'my_forum/shared/upload_photo', locals: { textarea: 'post_text' }

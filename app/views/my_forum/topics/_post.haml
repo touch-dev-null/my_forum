@@ -1,15 +1,16 @@
 - post_counter += 1
 
 .row.post-header{ id: "post_number_#{post_counter}"}
-  .col-md-10
+  .col-md-9
     %span.post_from_user_login
       - user_login = post.user.try(:login)
       %span.user_profile_popover{ title: user_login, data: { toggle: 'popover', content: (render partial: 'profile_popover', locals: { user: post.user })}}
         = online_user_marker(user_login)
         %span.login= user_login
-  .col-md-2.post_number.text-right
+  .col-md-3.post_number.text-right
     - # TODO optimize condition!
     - if current_user and current_user.is_admin? and post.topic.posts.first != post
+      =link_to t('.edit'), edit_forum_topic_post_path(@forum, post.topic, post, page: params[:page]), class: 'btn btn-xs btn-info', data: { confirm: "Are you sure?" }
       =link_to t('.delete'), forum_topic_post_path(@forum, post.topic, post), class: 'btn btn-xs btn-danger', method: :delete, data: { confirm: "Are you sure?" }
     %button.btn.btn-xs.btn-warning.quote-post{ data: { post_id: post.id } }
       =t('.quote')
@@ -21,3 +22,7 @@
     .created_at= t('.sent', datetime: time(post.created_at))
     #post_container{ id: post.id }
       = sanitize format_post_text(post)
+
+-if post.edited_by
+  .row
+    .edited_by.text-right= t('.edited_by', login: post.edited_by, date: time(post.updated_at))
