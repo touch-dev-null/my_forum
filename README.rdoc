@@ -12,3 +12,5 @@ For using existing User model, use somethink like this:
 Create config/initializers/my_forum.rb with next content:
 MyForum::Engine.use_custom_user_model = true
 ...
+
+Demo: http://vaz.od.ua
